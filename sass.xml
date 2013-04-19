@@ -1,0 +1,11 @@
+<project basedir="." default="sass">
+    <target name="sass">
+        <apply dest="styles" executable="/home/kuba/.gem/ruby/2.0.0/bin/sass">
+            <srcfile/>
+            <targetfile/>
+            <arg value="--style=compressed"/>
+            <fileset dir="styles" includes="*.sass"/>
+            <mapper from="*.sass" to="*.css" type="glob"/>
+        </apply>
+    </target>
+</project>

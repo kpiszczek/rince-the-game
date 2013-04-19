@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>Rince</title>
+		<link rel="stylesheet" href="styles/fontfaces.css" />
+		<link rel="stylesheet" href="styles/main.css"/>
+		<script src="scripts/modernizr.js"></script>
+		<script src="scripts/loader.js"></script>
+	</head>
+	<body>
+	    <div id="game">
+	        <div class="background">
+    	        <div class="screen" id="install-screen"> </div>
+    	        <div class="screen" id="splash-screen">
+    	            <h1 class="logo">Rince</h1>
+    	            <div class="progress">
+    	               <div class="indicator"> </div>
+    	            </div>
+    	            <span class="continue">Dalej</span>
+                </div>
+    	        <div class="screen" id="main-menu">
+    	            <h2 class="logo">Rince</h2>
+    	            <ul class="menu">
+    	                <li><button name="game-screen">Nowa gra</button></li>
+    	                <li><button name="old-game-screen">Kontynuuj</button></li>
+    	                <li><button name="exit-screen">Zamknij</button></li>
+    	            </ul>
+    	        </div>
+    	        <div class="screen" id="game-screen">
+    	            <div class="game-landscape cell-size">
+    	                
+    	            </div>
+                </div>
+    	        <div class="screen" id="level-select"><!-- TODO: Level select --></div>
+    	        <div id="player-proto" class="cell-size"> </div>
+    	    </div>
+	    </div>
+	</body>
+</html>
