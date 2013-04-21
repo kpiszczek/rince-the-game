@@ -7,7 +7,7 @@ window.requestAnimationFrame = (function(){
         function(callback, element){
             return window.setTimeout(function(){
                 callback(Date.now());
-            }, 1000/rince.settings.fps);
+            }, 1000/60);
         };
 })();
 

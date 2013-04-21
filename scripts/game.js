@@ -20,7 +20,11 @@ rince.game = (function(){
     }
     
     function createBackground(){
-        if (!Modernizr.canvas) return;
+        if (!Modernizr.canvas) {
+            alert("Przeglądarka nie obsługuje elementu canvas. Zmień ją na współczesną!");
+            return;
+        }
+        
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
         var background = $("#game .background")[0];

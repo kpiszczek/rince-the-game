@@ -68,32 +68,46 @@ rince.display = (function(){
     
     function drawLandscape(pos){
         var landImage = rince.images["images/landscape" + cellSize + ".png"];
+        var intersection = bgcanvas.width - landscapePos;
         landscapePos = Math.floor((landscapePos + 5*pos*speed) % bgcanvas.width);
-        bgctx.drawImage(landImage, 
-            landscapePos, 0, 
-            bgcanvas.width - landscapePos, canvas.height,
-            0, 0,
-            bgcanvas.width - landscapePos, canvas.height);
-        bgctx.drawImage(landImage, 
-            0, 0,
-            landscapePos, canvas.height,
-            bgcanvas.width - landscapePos, 0,
-            landscapePos, canvas.height);      
+        
+        if (intersection !== 0){
+            bgctx.drawImage(landImage, 
+                landscapePos, 0, 
+                intersection, bgcanvas.height,
+                0, 0,
+                intersection, bgcanvas.height);
+        }
+        
+        if (landscapePos !== 0){
+        	bgctx.drawImage(landImage, 
+                0, 0,
+                landscapePos, bgcanvas.height,
+                intersection, 0,
+                landscapePos, bgcanvas.height);  
+        }
     }
     
     function drawSky(pos){
         var cloudsImage = rince.images["images/clouds" + cellSize + ".png"];
+        var intersection = bgcanvas.width - skyPos;
         skyPos = Math.floor((skyPos + pos*speed) % bgcanvas.width);
-        bgctx.drawImage(cloudsImage, 
-            skyPos, 0,
-            bgcanvas.width - skyPos, canvas.height, 
-            0, 0,
-            bgcanvas.width - skyPos, canvas.height);
-        bgctx.drawImage(cloudsImage, 
-            0, 0, 
-            skyPos, canvas.height,
-            bgcanvas.width - skyPos, 0,
-            skyPos, canvas.height);
+        
+        if (intersection !== 0){
+            bgctx.drawImage(cloudsImage, 
+                skyPos, 0,
+                bgcanvas.width - skyPos, canvas.height, 
+                0, 0,
+                bgcanvas.width - skyPos, canvas.height);
+        }
+        
+        if (skyPos !== 0){
+            bgctx.drawImage(cloudsImage, 
+                0, 0, 
+                skyPos, canvas.height,
+                bgcanvas.width - skyPos, 0,
+                skyPos, canvas.height);
+        }
     }
     
     function renderLandscape(callback){
