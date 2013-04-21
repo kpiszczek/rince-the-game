@@ -68,8 +68,11 @@ rince.display = (function(){
     
     function drawLandscape(pos){
         var landImage = rince.images["images/landscape" + cellSize + ".png"];
-        var intersection = bgcanvas.width - landscapePos;
+        var interscetion;
+        
         landscapePos = Math.floor((landscapePos + 5*pos*speed) % bgcanvas.width);
+        intersection = bgcanvas.width - landscapePos;
+        
         
         if (intersection !== 0){
             bgctx.drawImage(landImage, 
@@ -90,23 +93,26 @@ rince.display = (function(){
     
     function drawSky(pos){
         var cloudsImage = rince.images["images/clouds" + cellSize + ".png"];
-        var intersection = bgcanvas.width - skyPos;
+        var intersection;
+        
         skyPos = Math.floor((skyPos + pos*speed) % bgcanvas.width);
+        intersection = bgcanvas.width - skyPos;
+        
         
         if (intersection !== 0){
             bgctx.drawImage(cloudsImage, 
                 skyPos, 0,
-                bgcanvas.width - skyPos, canvas.height, 
+                bgcanvas.width - skyPos, bgcanvas.height, 
                 0, 0,
-                bgcanvas.width - skyPos, canvas.height);
+                bgcanvas.width - skyPos, bgcanvas.height);
         }
         
         if (skyPos !== 0){
             bgctx.drawImage(cloudsImage, 
                 0, 0, 
-                skyPos, canvas.height,
+                skyPos, bgcanvas.height,
                 bgcanvas.width - skyPos, 0,
-                skyPos, canvas.height);
+                skyPos, bgcanvas.height);
         }
     }
     
