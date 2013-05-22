@@ -17,9 +17,9 @@ rince.landscape = (function(){
         cols = settings.cols;
         rows = settings.rows;
         
-        player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], cols*cellSize)
-        alert("landscape.init: " + player);
-        player.x = 100;
+        player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], 
+                                         cols*cellSize, rows*cellSize);
+        player.x = 80;
         player.y = 200;
         
         callback();
@@ -40,17 +40,42 @@ rince.landscape = (function(){
         return player;
     }
     
-    function movePlayer(x,y){
-        player.direction = [x, y];
+    function movePlayerUp(){
+        player.direction[1] = -1;
     }
     
+    function movePlayerDown(){
+        player.direction[1] = 1;
+    }
+    
+    function movePlayerLeft(){
+        player.direction[0] = -1;
+    }
+    
+    function movePlayerRight(){
+        player.direction[0] = 1;
+    }
+    
+    function resetPlayerHorizontalMove(){
+        player.direction[0] = 0;
+    }
+    
+    function resetPlayerVerticalMove(){
+        player.direction[1] = 0;
+    }
     function randomEnemy(){
         return null;
     }
     
     return {
         initialize: initialize,
-        getPlayer: getPlayer
+        getPlayer: getPlayer,
+        movePlayerUp: movePlayerUp,
+        movePlayerDown: movePlayerDown,
+        movePlayerRight: movePlayerRight,
+        movePlayerLeft: movePlayerLeft,
+        resetPlayerHorizontalMove: resetPlayerHorizontalMove,
+        resetPlayerVerticalMove: resetPlayerVerticalMove
     };
     
 })();

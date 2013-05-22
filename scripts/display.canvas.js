@@ -59,7 +59,7 @@ rince.display = (function(){
         createAndAddBackground();
         
         player = landscape.getPlayer();
-        alert("display.setup: " + player);
+
         stage.addChild(player);
         
         createjs.Ticker.addListener(window);
@@ -69,7 +69,8 @@ rince.display = (function(){
     }
     
     function tick(){
-        drawLandscape();      
+        drawLandscape();
+        player.tick();      
         stage.update();
     }
     

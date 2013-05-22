@@ -19,31 +19,39 @@ rince.screens["game-screen"] = (function(){
     }
     
     function moveUp(){
-        landscape.movePlayer(1, -10);
-        display.update();
+        landscape.movePlayerUp();
     }
     
     function moveDown(){
-        landscape.movePlayer(0, 10);
-        display.update();
+        landscape.movePlayerDown();
     }
     
     function moveLeft(){
-        landscape.movePlayer(-10, 0);
-        display.update();
+        landscape.movePlayerLeft();
     }
     
     function moveRight(){
-        landscape.movePlayer(10,0);
-        display.update();
+        landscape.movePlayerRight();
+    }
+    
+    function stopHorizontal(){
+        landscape.resetPlayerHorizontalMove();
+    }
+    
+    function stopVertical(){
+        landscape.resetPlayerVerticalMove();
     }
     
     function setup(){
         input.initialize();
-        input.bind("moveUp", moveUp);
-        input.bind("moveDown", moveDown);
-        input.bind("moveRight", moveRight);
-        input.bind("moveLeft", moveLeft);
+        input.bind("keydown_Up", moveUp);
+        input.bind("keydown_Down", moveDown);
+        input.bind("keydown_Right", moveRight);
+        input.bind("keydown_Left", moveLeft);
+        input.bind("keyup_Up", stopVertical);
+        input.bind("keyup_Down", stopVertical);
+        input.bind("keyup_Left", stopHorizontal);
+        input.bind("keyup_Right", stopHorizontal);
     }
     
     function playGameEvents(events){
@@ -53,9 +61,10 @@ rince.screens["game-screen"] = (function(){
                 playGameEvents(events);
             };
             
+            alert(landscapeEvent.data);
             switch(landscapeEvents.type){
                 case "move":
-                    landscape.movePlayer(landscapeEvent.data, next);
+                    display.movePlayer(landscapeEvent.data, next)
                     break;
                 default:
                     next();

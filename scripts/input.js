@@ -21,7 +21,7 @@ rince.input = (function (){
             var keyName = keys[event.keyCode];
             if (keyName && controls[keyName]){
                 event.preventDefault();
-                trigger(controls[keyName]);
+                trigger("keydown_" + controls[keyName]);
             }
         });
         
@@ -29,7 +29,7 @@ rince.input = (function (){
             var keyName = keys[event.keyCode];
             if (keyName && controls[keyName]){
                 event.preventDefault();
-                trigger(controls[keyName]);
+                trigger("keyup_" + controls[keyName]);
             }
         });
         

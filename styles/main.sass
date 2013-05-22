@@ -1,16 +1,28 @@
 body
   margin: 0
-  
+  text-align: center
+
+#container
+  width: 100%
+  height: 100%
+  display: box
+  box-orient: horizontal
+  box-pack: center
+  box-align: center
+
 #game
+  display: table
+  margin: 0 auto
   position: absolute
   left: 0
   top: 0 
   font:
     family: Bubblegum
-    size: 40px
-  height: 9em
-  width: 15em
+    size: 30px
+  height: 12em
+  width: 20em
   color: rgb(0,0,0)
+  text-align: center
   background:
     color: rgb(230,230,230)
   .screen
@@ -19,6 +31,7 @@ body
     height: 100%
     display: none
     z-index: 10
+    margin: 0 auto
   .screen.active
     display: block
   .background
@@ -76,17 +89,17 @@ ul.menu
     button
       font:
         family: Bubblegum
-        size: 0.6em
+        size: 0.8em
       color: rgb(200,120,0)
-      width: 10em
-      height: 1.5em
+      width: 12em
+      height: 2em
       background: rgb(10,20,0)
-      border: 0.1em solid rgb(255,255,0)
+      border: 0.15em solid rgb(255,255,0)
       border:
-        radius: 0,5em
-      -webkit-box-shadow: 0.2em 0.2em 0.3em rgb(0,0,0)
-      -moz-box-shadow: 0.2em 0.2em 0.2em 0.3em rgb(0,0,0)
-      box-shadow: 0.2em 0.2em 0.3em rgb(0,0,0)
+        radius: 0,7em
+      -webkit-box-shadow: 0.3em 0.3em 0.4em rgb(0,0,0)
+      -moz-box-shadow: 0.3em 0.3em 0.3em 0.4em rgb(0,0,0)
+      box-shadow: 0.3em 0.3em 0.4em rgb(0,0,0)
     button:hover
       background: rgb(30,40,0)
       cursor: pointer
@@ -107,10 +120,10 @@ ul.menu
   
 .progress
   margin: 0 auto
-  width: 6em
-  height: 0.5em
+  width: 7em
+  height: 0.6em
   border:
-    radius: 0.5em
+    radius: 0.6em
   overflow: hidden
   border: 1px solid rgb(200,200,100)
   .indicator
@@ -124,6 +137,3 @@ ul.menu
     position: relative
     width: 20em
     height: 12em
-    
-.main-window
-  z-index: 100

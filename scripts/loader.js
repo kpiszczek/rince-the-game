@@ -9,10 +9,10 @@ var rince = {
     },
     images: {},
     controls: {
-        KEY_UP: "moveUp",
-        KEY_DOWN: "moveDown",
-        KEY_LEFT: "moveLeft",
-        KEY_RIGHT: "moveRight",
+        KEY_UP: "Up",
+        KEY_DOWN: "Down",
+        KEY_LEFT: "Left",
+        KEY_RIGHT: "Right",
         KEY_SPACE: "specialAction"
     }
 };
