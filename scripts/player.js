@@ -19,7 +19,7 @@ rince.player = (function(){
             frames: { width: 90, height:120, regX:45, regY: 60 },
             animations: {
                 run: {
-                	frames: [0, 1, 2, 3, 4, 3, 2, 1],
+                	frames: [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1],
                 	next: "run"
                 }
             }
@@ -32,7 +32,7 @@ rince.player = (function(){
 
         // start playing the first sequence:
         this.gotoAndPlay("run"); 	//animate
-        this.name = "Hero";
+        this.name = "Player";
         
         // 1 = right/up & -1 = left/down
         this.direction = [0,0];

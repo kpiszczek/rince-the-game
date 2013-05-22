@@ -19,7 +19,7 @@ rince.screens["game-screen"] = (function(){
     }
     
     function moveUp(){
-        landscape.movePlayer(0, -10);
+        landscape.movePlayer(1, -10);
         display.update();
     }
     
@@ -55,16 +55,13 @@ rince.screens["game-screen"] = (function(){
             
             switch(landscapeEvents.type){
                 case "move":
-                    display.movePlayer(landscapeEvent.data, next);
+                    landscape.movePlayer(landscapeEvent.data, next);
                     break;
                 default:
                     next();
                     break;
             }
         } else {
-            display.redraw(landscape.getLandscape(), function(){
-                // Ponowne malowanie
-            });
         }
     }
     

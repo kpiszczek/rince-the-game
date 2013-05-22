@@ -1,36 +1,28 @@
 rince.landscape = (function(){
     var settings;
     var enemies;
+    var cellSize;
     var cols;
     var rows;
     var scores;
     var numEnemyTypes;
     var enemyProbs;
-    var playerPos;
-    var playerBounds;
-    
+    var player;
+
     function initialize(callback){
         settings = rince.settings;
         numEnemyTypes = settings.numEnemyTypes;
         baseScore = settings.baseScore;
+        cellSize = settings.cellSize;
         cols = settings.cols;
         rows = settings.rows;
-        playerBounds = {
-            minX: 0,
-            maxX: cols*settings.cellSize - 2*settings.cellSize,
-            minY: Math.floor(0.25*rows*settings.cellSize),
-            maxY: rows*settings.cellSize - 3*settings.cellSize
-        };
-        playerPos = {
-            x: 20,
-            y: playerBounds.minY + (playerBounds.maxY - playerBounds.minY)/2
-        };
-        fillLandscape();
+        
+        player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], cols*cellSize)
+        alert("landscape.init: " + player);
+        player.x = 100;
+        player.y = 200;
+        
         callback();
-    }
-    
-    function print(){
-        console.log("hello");
     }
     
     function fillLandscape(){
@@ -44,26 +36,21 @@ rince.landscape = (function(){
         }
     }
     
-    function movePlayer(dx,dy){
-        var x = playerPos.x + dx;
-        var y = playerPos.y + dy;
-        playerPos.x = Math.max(playerBounds.minX, Math.min(playerBounds.maxX, x));
-        playerPos.y = Math.max(playerBounds.minY, Math.min(playerBounds.maxY, y));
+    function getPlayer(){
+        return player;
+    }
+    
+    function movePlayer(x,y){
+        player.direction = [x, y];
     }
     
     function randomEnemy(){
         return null;
     }
     
-    function getPlayerPos(){
-        return playerPos;
-    }
-    
     return {
         initialize: initialize,
-        print: print,
-        getPlayerPos: getPlayerPos,
-        movePlayer: movePlayer
+        getPlayer: getPlayer
     };
     
 })();

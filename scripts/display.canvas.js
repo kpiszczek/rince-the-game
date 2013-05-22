@@ -4,6 +4,7 @@ rince.display = (function(){
     var $ = dom.$;
     var canvas, ctx, landBitmap1, skyBitmap1, landBitmap2, landBitmap2;
     var cols, rows, cellSize, stage;
+    var landscape = rince.landscape;
     var previousCycle;
     var firstRun = true;
     var speed = 1;
@@ -57,7 +58,9 @@ rince.display = (function(){
         init();
         createAndAddBackground();
         
-        player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], canvas.width);
+        player = landscape.getPlayer();
+        alert("display.setup: " + player);
+        stage.addChild(player);
         
         createjs.Ticker.addListener(window);
         createjs.Ticker.addEventListener("tick", tick);
@@ -71,8 +74,8 @@ rince.display = (function(){
     }
     
     function drawLandscape(){
-        landscapePos = (landscapePos + 5) % canvas.width;
-        skyPos = (skyPos + 1) % canvas.width;
+        landscapePos = (landscapePos + 5*speed) % canvas.width;
+        skyPos = (skyPos + 1*speed) % canvas.width;
         
         var intersection = canvas.width - landscapePos;
               

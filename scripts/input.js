@@ -25,6 +25,14 @@ rince.input = (function (){
             }
         });
         
+        dom.bind(document, "keyup", function(event){
+            var keyName = keys[event.keyCode];
+            if (keyName && controls[keyName]){
+                event.preventDefault();
+                trigger(controls[keyName]);
+            }
+        });
+        
         dom.bind(landscape, "mousedown", function(event){
             handleClick(event, "CLICK", event);
         });
