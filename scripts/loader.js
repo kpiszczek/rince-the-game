@@ -94,6 +94,7 @@ window.addEventListener("load", function(){
                     "loader!scripts/input.js",
                     "loader!scripts/landscape.js",
                     "loader!scripts/player.js",
+                    "loader!scripts/obstacle.js",
                     "loader!scripts/display.canvas.js",
                     "loader!scripts/screen.main-menu.js",
                     "loader!scripts/screen.game.js"                                     
