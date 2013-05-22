@@ -2,8 +2,8 @@ var rince = {
     screens: {},
     settings: {
         fps: 30,
-        rows: 9,
-        cols: 15,
+        rows: 12,
+        cols: 20,
         baseScore: 0,
         numEnemyTypes: 1
     },
@@ -53,9 +53,10 @@ window.addEventListener("load", function(){
     Modernizr.load([
         {
             load: [
+                "scripts/requestAnimationFrame.js",
+                "scripts/easeljs-0.6.0.min.js",
                 "scripts/sizzle.js",
                 "scripts/dom.js",
-                "scripts/requestAnimationFrame.js",
                 "loader!images/background" + rince.settings.cellSize + ".png",
                 "scripts/game.js"
             ]
@@ -86,15 +87,16 @@ window.addEventListener("load", function(){
     if (Modernizr.standalone){
         Modernizr.load([
             {
-                load: [                 
-                    "loader!scripts/input.js",
-                    "loader!scripts/landscape.js",
-                    "loader!scripts/display.canvas.js",
-                    "loader!scripts/screen.main-menu.js",
-                    "loader!scripts/screen.game.js",
+                load: [      
                     "loader!images/landscape" + rince.settings.cellSize + ".png",
                     "loader!images/clouds" + rince.settings.cellSize + ".png",
-                    "loader!images/rincewind" + rince.settings.cellSize + ".png"                  
+                    "loader!images/rincesprite" + rince.settings.cellSize + ".png",           
+                    "loader!scripts/input.js",
+                    "loader!scripts/landscape.js",
+                    "loader!scripts/player.js",
+                    "loader!scripts/display.canvas.js",
+                    "loader!scripts/screen.main-menu.js",
+                    "loader!scripts/screen.game.js"                                     
                 ]
             }
         ]);
