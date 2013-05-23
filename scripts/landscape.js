@@ -8,6 +8,7 @@ rince.landscape = (function(){
     var numEnemyTypes;
     var enemyProbs;
     var player;
+    var stop = false;
 
     function initialize(callback){
         settings = rince.settings;
@@ -63,8 +64,13 @@ rince.landscape = (function(){
     function resetPlayerVerticalMove(){
         player.direction[1] = 0;
     }
+    
     function randomEnemy(){
         return null;
+    }
+    
+    function isStopped(){
+        return stop;
     }
     
     return {
@@ -75,7 +81,8 @@ rince.landscape = (function(){
         movePlayerRight: movePlayerRight,
         movePlayerLeft: movePlayerLeft,
         resetPlayerHorizontalMove: resetPlayerHorizontalMove,
-        resetPlayerVerticalMove: resetPlayerVerticalMove
+        resetPlayerVerticalMove: resetPlayerVerticalMove,
+        isStopped: isStopped
     };
     
 })();

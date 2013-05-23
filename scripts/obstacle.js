@@ -10,6 +10,7 @@ rince.obstacle = (function(){
 	Obstacle.prototype.BitmapAnimation_initialize = Obstacle.prototype.initialize;
 	
 	var frameSize;
+	var speed = rince.settings.speed;
 	
 	Obstacle.prototype.initialize = function (obstacleName, imgObstacle) {
         var localSpriteSheet = new createjs.SpriteSheet({
@@ -31,6 +32,25 @@ rince.obstacle = (function(){
         
         this.name = obstacleName;
 	}
+	
+	Obstacle.prototype.tick = function(){
+		if (!landscape.isStopped()){
+			this.x -= speed;
+		}
+	}
+	
+	Obstacle.prototype.hitPoint = function(tX, tY){
+		return this.hitRadius(tX, tY, 0)
+	}
+	
+	Obstacle.prototype.hitRadius = function(tX, tY, tHit){
+		if (tX - tHit > this.x + this.hit) { return; }
+        if (tX + tHit < this.x - this.hit) { return; }
+        if (tY - tHit > this.y + this.hit) { return; }
+        if (tY + tHit < this.y - this.hit) { return; }
+        
+        return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
+	}	
 	
 	return {
 		Obstacle: Obstacle

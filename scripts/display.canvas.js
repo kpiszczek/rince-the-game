@@ -7,7 +7,7 @@ rince.display = (function(){
     var landscape = rince.landscape;
     var previousCycle;
     var firstRun = true;
-    var speed = 1;
+    var speed;
     var landscapePos = 0;
     var skyPos = 0;
     var player;
@@ -17,6 +17,7 @@ rince.display = (function(){
         cols = rince.settings.cols;
         rows = rince.settings.rows;
         cellSize = rince.settings.cellSize;
+        speed = rince.settings.speed;
         
         canvas = document.createElement("canvas");
         dom.addClass(canvas,"main-window");
@@ -75,8 +76,10 @@ rince.display = (function(){
     }
     
     function drawLandscape(){
-        landscapePos = (landscapePos + 5*speed) % canvas.width;
-        skyPos = (skyPos + 1*speed) % canvas.width;
+        if (!landscape.isStopped()){
+            landscapePos = (landscapePos + speed) % canvas.width;
+            skyPos = (skyPos + Math.floor(speed/5)) % canvas.width;
+        }
         
         var intersection = canvas.width - landscapePos;
               
