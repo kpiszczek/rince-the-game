@@ -10,7 +10,7 @@ rince.display = (function(){
     var speed;
     var landscapePos = 0;
     var skyPos = 0;
-    var player;
+    var objects;
     
     function init(){
         var landscapeElement = $("#game-screen .game-landscape")[0];
@@ -59,9 +59,9 @@ rince.display = (function(){
         init();
         createAndAddBackground();
         
-        player = landscape.getPlayer();
+        objects = landscape.getObjects();
 
-        stage.addChild(player);
+        stage.addChild(objects);
         
         createjs.Ticker.addListener(window);
         createjs.Ticker.addEventListener("tick", tick);
@@ -71,7 +71,7 @@ rince.display = (function(){
     
     function tick(){
         drawLandscape();
-        player.tick();      
+        landscape.tick();      
         stage.update();
     }
     

@@ -9,6 +9,7 @@ rince.landscape = (function(){
     var enemyProbs;
     var player;
     var stop = false;
+    var container;
 
     function initialize(callback){
         settings = rince.settings;
@@ -17,9 +18,11 @@ rince.landscape = (function(){
         cellSize = settings.cellSize;
         cols = settings.cols;
         rows = settings.rows;
+        container = new createjs.Container();
         
         player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], 
                                          cols*cellSize, rows*cellSize);
+        container.addChild(player);
         player.x = 80;
         player.y = 200;
         
@@ -37,8 +40,15 @@ rince.landscape = (function(){
         }
     }
     
-    function getPlayer(){
-        return player;
+    function getObjects(){
+        return container;
+    }
+    
+    function tick(){
+        l = container.getNumChildren();
+        for (var i=0; i<l; i++){
+            container.children[i].tick();
+        }
     }
     
     function movePlayerUp(){
@@ -75,14 +85,15 @@ rince.landscape = (function(){
     
     return {
         initialize: initialize,
-        getPlayer: getPlayer,
+        getObjects: getObjects,
         movePlayerUp: movePlayerUp,
         movePlayerDown: movePlayerDown,
         movePlayerRight: movePlayerRight,
         movePlayerLeft: movePlayerLeft,
         resetPlayerHorizontalMove: resetPlayerHorizontalMove,
         resetPlayerVerticalMove: resetPlayerVerticalMove,
-        isStopped: isStopped
+        isStopped: isStopped,
+        tick: tick
     };
     
 })();
