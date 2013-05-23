@@ -12,6 +12,7 @@ rince.player = (function(){
 	Player.prototype.BitmapAnimation_initialize = Player.prototype.initialize;
 	
 	var quaterFrameSize;
+	var previousDir = 0;
 	
 	Player.prototype.initialize = function (imgPlayer, x_end, y_end) {
         var localSpriteSheet = new createjs.SpriteSheet({
@@ -19,9 +20,20 @@ rince.player = (function(){
             frames: { width: 90, height:120, regX:45, regY: 60 },
             animations: {
                 run: {
-                	frames: [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 3, 3, 3, 2, 2, 2, 1, 1, 1],
-                	next: "run"
-                }
+                	frames: [0,1,2,3,4,3,2,1],
+                	next: "run",
+                	frequency: 3
+                },
+            	faster: {
+            		frames: [0,1,2,3,4,3,2,1],
+                	next: "faster",
+                	frequency: 2
+            	},
+            	slower: {
+            		frames: [0,1,2,3,4,3,2,1],
+                	next: "slower",
+                	frequency: 4
+            	}
             }
         });
         
@@ -61,6 +73,17 @@ rince.player = (function(){
             if ((this.y + this.vY*this.direction[1] + halfFrameHeight < this.y_end) &&
             		(this.y + this.vY*this.direction[1] > this.quaterYEnd)){
             	this.y += this.vY * this.direction[1];
+            }
+            
+            if (this.direction[0] == 1 && this.direction[0] != previousDir){
+            	previousDir = 1;
+            	this.gotoAndPlay("faster");            	
+            } else if (this.direction[0] == -1 && this.direction[0] != previousDir){
+            	previousDir = -1;
+            	this.gotoAndPlay("slower");       	
+            } else if (this.direction[0] != previousDir){
+            	previousDir = 0;
+            	this.gotoAndPlay("run");  	
             }
         }
     }
