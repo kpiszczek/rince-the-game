@@ -1,6 +1,6 @@
 rince.screens["game-screen"] = (function(){
     
-    var landscape = rince.landscape;
+    var level = rince.level;
     var display = rince.display;
     var input = rince.input;
     var firstRun = true;
@@ -11,7 +11,7 @@ rince.screens["game-screen"] = (function(){
             firstRun = false;
         }
        
-        landscape.initialize(function(){
+        level.initialize(function(){
             display.initialize(function(){
                    // inicjalizacja
             });
@@ -19,27 +19,27 @@ rince.screens["game-screen"] = (function(){
     }
     
     function moveUp(){
-        landscape.movePlayerUp();
+        level.movePlayerUp();
     }
     
     function moveDown(){
-        landscape.movePlayerDown();
+        level.movePlayerDown();
     }
     
     function moveLeft(){
-        landscape.movePlayerLeft();
+        level.movePlayerLeft();
     }
     
     function moveRight(){
-        landscape.movePlayerRight();
+        level.movePlayerRight();
     }
     
     function stopHorizontal(){
-        landscape.resetPlayerHorizontalMove();
+        level.resetPlayerHorizontalMove();
     }
     
     function stopVertical(){
-        landscape.resetPlayerVerticalMove();
+        level.resetPlayerVerticalMove();
     }
     
     function setup(){

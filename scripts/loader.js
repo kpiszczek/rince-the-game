@@ -63,7 +63,7 @@ window.addEventListener("load", function(){
             ]
                 /*"scripts/screen.splash.js",
                 "scripts/screen.main-menu.js",
-                "scripts/landscape.js"
+                "scripts/level.js"
             ],
             
             complete: function(){
@@ -91,9 +91,10 @@ window.addEventListener("load", function(){
                 load: [      
                     "loader!images/landscape" + rince.settings.cellSize + ".png",
                     "loader!images/clouds" + rince.settings.cellSize + ".png",
-                    "loader!images/rincesprite" + rince.settings.cellSize + ".png",           
+                    "loader!images/rincesprite" + rince.settings.cellSize + ".png",     
+                    "loader!images/tree" + rince.settings.cellSize + ".png",           
                     "loader!scripts/input.js",
-                    "loader!scripts/landscape.js",
+                    "loader!scripts/level.js",
                     "loader!scripts/player.js",
                     "loader!scripts/obstacle.js",
                     "loader!scripts/display.canvas.js",

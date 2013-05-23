@@ -1,6 +1,6 @@
 rince.obstacle = (function(){
-	function Obstacle(obstacleName, imgObstacle){
-		this.initialize(obstacleName, imgObstacle);
+	function Obstacle(obstacleName, imgObstacle, w, h, x, y){
+		this.initialize(obstacleName, imgObstacle, w, h, x, y);
 	}
 	Obstacle.prototype = new createjs.BitmapAnimation();
 	
@@ -12,10 +12,10 @@ rince.obstacle = (function(){
 	var frameSize;
 	var speed = rince.settings.speed;
 	
-	Obstacle.prototype.initialize = function (obstacleName, imgObstacle) {
+	Obstacle.prototype.initialize = function (obstacleName, imgObstacle, w, h, x, y) {
         var localSpriteSheet = new createjs.SpriteSheet({
             images: [imgObstacle], //image to use
-            frames: {width: 64, height: 64, regX: 32, regY: 32},
+            frames: {width: w, height: h, regX: x, regY: y},
             animations: {
                 idle: {
                 	frames: [0],
@@ -31,10 +31,15 @@ rince.obstacle = (function(){
         this.gotoAndPlay("idle");
         
         this.name = obstacleName;
+        
+        // frame width / 2
+        this.w2 = w/2;
+        
+        this.x = rince.settings.cols * rince.settings.cellSize + this.w2;
 	}
 	
 	Obstacle.prototype.tick = function(){
-		if (!landscape.isStopped()){
+		if (!rince.level.isStopped()){
 			this.x -= speed;
 		}
 	}

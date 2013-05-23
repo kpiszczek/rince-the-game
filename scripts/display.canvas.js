@@ -4,7 +4,7 @@ rince.display = (function(){
     var $ = dom.$;
     var canvas, ctx, landBitmap1, skyBitmap1, landBitmap2, landBitmap2;
     var cols, rows, cellSize, stage;
-    var landscape = rince.landscape;
+    var level = rince.level;
     var previousCycle;
     var firstRun = true;
     var speed;
@@ -59,7 +59,7 @@ rince.display = (function(){
         init();
         createAndAddBackground();
         
-        objects = landscape.getObjects();
+        objects = level.getObjects();
 
         stage.addChild(objects);
         
@@ -71,12 +71,12 @@ rince.display = (function(){
     
     function tick(){
         drawLandscape();
-        landscape.tick();      
+        level.tick();      
         stage.update();
     }
     
     function drawLandscape(){
-        if (!landscape.isStopped()){
+        if (!level.isStopped()){
             landscapePos = (landscapePos + speed) % canvas.width;
             skyPos = (skyPos + Math.floor(speed/5)) % canvas.width;
         }
