@@ -8,6 +8,7 @@ rince.player = (function(){
 	Player.prototype.bounds = 0;
 	Player.prototype.hit = 0;
 	Player.prototype.idle = false;
+    Player.prototype.immune = false;
 		
 	Player.prototype.BitmapAnimation_initialize = Player.prototype.initialize;
 	

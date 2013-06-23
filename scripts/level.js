@@ -11,6 +11,7 @@ rince.level = (function(){
     var container;
     var tickCounter = 0;
     var Obstacle;
+    var obstacle_types = [];
     var obstacles = [];
 
     function initialize(callback){
@@ -28,14 +29,16 @@ rince.level = (function(){
                                          
         var image = rince.images["images/tree"+cellSize+".png"];
                                          
-        obstacles.push({
+        obstacle_types.push({
             name: "tree",
             image: image,
-            prob: 0.2,
             w: image.width,
             h: image.height,
             x: Math.floor(image.width/2),
-            y: 195
+            y: 195,
+            hitAction: function(player){
+                alert("player got hit!");
+            }
         })
         container.addChild(player);
         player.x = 80;
@@ -65,9 +68,10 @@ rince.level = (function(){
         tickCounter += 1;
         
         if (tickCounter % 150 == 0){
-            var o = obstacles[0];
-            var obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y)
+            var o = obstacle_types[0];
+            var obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
             container.addChild(obstacle);
+            obstacles.push(obstacle);
             obstacle.y = Math.floor(Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize);
         }
         
@@ -77,10 +81,20 @@ rince.level = (function(){
             child.tick();
             
             if (child.x < -child.w2){
+
                 container.removeChildAt(i);
                 l -= 1;
             }
+
+            if (child !== player){
+                if (child.hitRadius(player.x, player.y, player.hit)){
+                    child.hitAction(player);
+                }
+            }
+
+
         }
+
         container.sortChildren(compareByY);
     }
     

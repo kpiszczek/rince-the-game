@@ -1,6 +1,6 @@
 rince.obstacle = (function(){
-	function Obstacle(obstacleName, imgObstacle, w, h, x, y){
-		this.initialize(obstacleName, imgObstacle, w, h, x, y);
+	function Obstacle(obstacleName, imgObstacle, w, h, x, y, hitAction){
+		this.initialize(obstacleName, imgObstacle, w, h, x, y, hitAction);
 	}
 	Obstacle.prototype = new createjs.BitmapAnimation();
 	
@@ -12,7 +12,7 @@ rince.obstacle = (function(){
 	var frameSize;
 	var speed = rince.settings.speed;
 	
-	Obstacle.prototype.initialize = function (obstacleName, imgObstacle, w, h, x, y) {
+	Obstacle.prototype.initialize = function (obstacleName, imgObstacle, w, h, x, y, hitAction) {
         var localSpriteSheet = new createjs.SpriteSheet({
             images: [imgObstacle], //image to use
             frames: {width: w, height: h, regX: x, regY: y},
@@ -23,6 +23,8 @@ rince.obstacle = (function(){
                 }
             }
         });
+
+        this.hitAction = hitAction;
         
         this.BitmapAnimation_initialize(localSpriteSheet);
         
@@ -55,7 +57,7 @@ rince.obstacle = (function(){
         if (tY + tHit < this.y - this.hit) { return; }
         
         return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
-	}	
+	}
 	
 	return {
 		Obstacle: Obstacle
