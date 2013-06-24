@@ -94,6 +94,7 @@ window.addEventListener("load", function(){
                     "loader!images/rincesprite" + rince.settings.cellSize + ".png",     
                     "loader!images/tree" + rince.settings.cellSize + ".png",           
                     "loader!scripts/input.js",
+                    "loader!scripts/levels.js",
                     "loader!scripts/level.js",
                     "loader!scripts/player.js",
                     "loader!scripts/obstacle.js",

@@ -26,20 +26,9 @@ rince.level = (function(){
         
         player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], 
                                          cols*cellSize, rows*cellSize);
-                                         
-        var image = rince.images["images/tree"+cellSize+".png"];
-                                         
-        obstacle_types.push({
-            name: "tree",
-            image: image,
-            w: image.width,
-            h: image.height,
-            x: Math.floor(image.width/2),
-            y: 195,
-            hitAction: function(player){
-                alert("player got hit!");
-            }
-        })
+                                        
+
+        obstacle_types = rince.levels.currentLevel().obstacle_types;                             
         container.addChild(player);
         player.x = 80;
         player.y = 200;

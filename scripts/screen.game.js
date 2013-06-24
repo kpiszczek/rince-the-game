@@ -11,6 +11,7 @@ rince.screens["game-screen"] = (function(){
             firstRun = false;
         }
        
+
         level.initialize(function(){
             display.initialize(function(){
                    // inicjalizacja
@@ -44,6 +45,7 @@ rince.screens["game-screen"] = (function(){
     
     function setup(){
         input.initialize();
+        rince.levels.initialize();
         input.bind("keydown_Up", moveUp);
         input.bind("keydown_Down", moveDown);
         input.bind("keydown_Right", moveRight);
