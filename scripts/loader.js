@@ -32,7 +32,7 @@ window.addEventListener("load", function(){
         var isImage = /.+.(jpg|png|gif)$/i.test(resource.url);
         resource.noexec = isImage;
         numPreload++;
-        resource.autoCallback = function(e){
+        resource.autoCallback = function(e) {
             numLoaded++;
             if (isImage){
                 var image = new Image();
@@ -98,6 +98,7 @@ window.addEventListener("load", function(){
                     "loader!scripts/level.js",
                     "loader!scripts/player.js",
                     "loader!scripts/obstacle.js",
+                    "loader!scripts/monster.js",
                     "loader!scripts/display.canvas.js",
                     "loader!scripts/screen.main-menu.js",
                     "loader!scripts/screen.game.js"                                     

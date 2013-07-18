@@ -8,7 +8,7 @@ rince.player = (function(){
 	Player.prototype.bounds = 0;
 	Player.prototype.hit = 0;
 	Player.prototype.idle = false;
-    Player.prototype.immune = false;
+    Player.prototype.immune = 0;
 		
 	Player.prototype.BitmapAnimation_initialize = Player.prototype.initialize;
 	
@@ -63,11 +63,13 @@ rince.player = (function(){
 	
 	Player.prototype.tick = function () {
         if (!this.idle) {
-            // Hit testing the screen width, otherwise our sprite would disappear
-            // The player is blocked at each side but we keep the walk_right or walk_animation running
+            console.log(this.immune);
+            if (this.immune > 0) {
+                this.immune -= 1;
+            }
+            
             if ((this.x + this.direction[0] > quaterFrameSize) && 
             		(this.x + (this.direction[0] * 2) < this.x_end - quaterFrameSize + 1)){
-                // Moving the sprite based on the direction & the speed
                 this.x += this.vX * this.direction[0];
             }
             

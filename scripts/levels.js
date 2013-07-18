@@ -21,6 +21,7 @@ rince.levels = (function(){
             x: Math.floor(image.width/2),
             y: 195,
             hitAction: function(player){
+                player.immune = rince.settings.fps;
                 alert("player got hit!");
             }
         });

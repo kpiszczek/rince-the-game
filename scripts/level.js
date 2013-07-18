@@ -76,14 +76,12 @@ rince.level = (function(){
             }
 
             if (child !== player){
-                if (child.hitRadius(player.x, player.y, player.hit)){
+                if (child.hitRadius(player.x, player.y, player.hit) && player.immune == 0){
                     child.hitAction(player);
                 }
             }
-
-
         }
-
+        
         container.sortChildren(compareByY);
     }
     
