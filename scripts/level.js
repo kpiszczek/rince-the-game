@@ -13,6 +13,8 @@ rince.level = (function(){
     var Obstacle;
     var obstacle_types = [];
     var obstacles = [];
+    var objectes = [];
+    var monsters = [];
     var current_level;
 
     function initialize(callback){
@@ -58,10 +60,22 @@ rince.level = (function(){
         tickCounter += 1;
         
         var new_obstacles = current_level.spawnObstacles(tickCounter);
+        var new_objects = current_level.spawnObjects(tickCounter);
+        var new_monsters = current_level.spawnMonsters(tickCounter);
 
         for (var i = 0; i < new_obstacles.length; i++) {
             obstacles.push(new_obstacles[i]);
             container.addChild(new_obstacles[i]);        
+        }
+
+        for (var i = 0; i < new_objects.length; i++){
+            objects.push(new_objects[i]);
+            container.addChild(new_objects[i]);
+        }
+
+        for (var i = 0; i < new_monsters; i++) {
+            monsters.push(new_monsters[i]);
+            container.addChild(new_monsters[i]);
         }
 
         /*

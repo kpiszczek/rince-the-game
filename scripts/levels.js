@@ -44,10 +44,22 @@ rince.levels = (function(){
             return obstacles;
         }
 
+        function spawnObjects(tick){
+            var objects = [];
+            return objects;
+        }
+
+        function spawnMonsters(tick){
+            var monsters = []
+            return monsters;
+        }
+
         return {
             name: "Sto Lat",
             obstacle_types: obstacle_types,
-            spawnObstacles: spawnObsatacles
+            spawnObstacles: spawnObsatacles,
+            spawnObjects: spawnObjects,
+            spawnMonsters: spawnMonsters
         }
 
     }
