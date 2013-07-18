@@ -46,8 +46,7 @@ rince.player = (function(){
         quaterFrameSize = this.spriteSheet.getFrame(0).rect.width / 4;
         halfFrameHeight = this.spriteSheet.getFrame(0).rect.height / 2;
 
-        // start playing the first sequence:
-        this.gotoAndPlay("run"); 	//animate
+        this.gotoAndPlay("run");
         this.name = "Player";
         
         // 1 = right/down & -1 = left/up
