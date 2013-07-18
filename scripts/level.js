@@ -13,6 +13,7 @@ rince.level = (function(){
     var Obstacle;
     var obstacle_types = [];
     var obstacles = [];
+    var current_level;
 
     function initialize(callback){
         settings = rince.settings;
@@ -27,8 +28,8 @@ rince.level = (function(){
         player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], 
                                          cols*cellSize, rows*cellSize);
                                         
-
-        obstacle_types = rince.levels.currentLevel().obstacle_types;                             
+        current_level = rince.levels.currentLevel();                                
+        obstacle_types = current_level.obstacle_types;                             
         container.addChild(player);
         player.x = 80;
         player.y = 200;
@@ -56,13 +57,21 @@ rince.level = (function(){
         
         tickCounter += 1;
         
+        var new_obstacles = current_level.spawnObstacles(tickCounter);
+
+        for (var i = 0; i < new_obstacles.length; i++) {
+            obstacles.push(new_obstacles[i]);
+            container.addChild(new_obstacles[i]);        
+        }
+
+        /*
         if (tickCounter % 150 == 0){
             var o = obstacle_types[0];
             var obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
             container.addChild(obstacle);
             obstacles.push(obstacle);
             obstacle.y = Math.floor(Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize);
-        }
+        }*/
         
         for (var i=0; i<l; i++){
             child = container.children[i];

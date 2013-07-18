@@ -3,6 +3,7 @@ rince.player = (function(){
 	function Player(imgPlayer, x_start, x_end, y_end) {
         this.initialize(imgPlayer, x_start, x_end, y_end);
     }
+
 	Player.prototype = new createjs.BitmapAnimation();
 	
 	Player.prototype.bounds = 0;
@@ -62,7 +63,6 @@ rince.player = (function(){
 	
 	Player.prototype.tick = function () {
         if (!this.idle) {
-            console.log(this.immune);
             if (this.immune > 0) {
                 this.immune -= 1;
             }
