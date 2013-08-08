@@ -27,9 +27,10 @@ rince.levels = (function(){
             h: image.height,
             x: Math.floor(image.width/2),
             y: 195,
-            hitAction: function(player){
-                player.immune = rince.settings.fps;
-                alert("player got hit!");
+            hitAction: function(player, level){
+                player.immune = 2*rince.settings.fps;
+                player.gotoAndPlay("fall");
+                level.stop = rince.settings.fps;
             }
         });
 

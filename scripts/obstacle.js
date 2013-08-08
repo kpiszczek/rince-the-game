@@ -20,6 +20,7 @@ rince.obstacle = (function(){
                 idle: {
                 	frames: [0],
                 	next: "idle"
+
                 }
             }
         });

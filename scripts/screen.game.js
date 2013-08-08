@@ -58,15 +58,14 @@ rince.screens["game-screen"] = (function(){
     
     function playGameEvents(events){
         if (events.length > 0){
-            var landscapeEvent = events.shift();
+            var levelEvent = events.shift();
             var next = function(){
                 playGameEvents(events);
             };
             
-            alert(landscapeEvent.data);
-            switch(landscapeEvents.type){
+            switch(levelEvent.type){
                 case "move":
-                    display.movePlayer(landscapeEvent.data, next)
+                    display.movePlayer(levelEvent.data, next)
                     break;
                 default:
                     next();

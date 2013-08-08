@@ -7,7 +7,7 @@ rince.level = (function(){
     var numEnemyTypes;
     var enemyProbs;
     var player;
-    var stop = false;
+    var stop = 0;
     var container;
     var tickCounter = 0;
     var Obstacle;
@@ -56,8 +56,12 @@ rince.level = (function(){
     function tick(){
         var child;
         var l = container.getNumChildren();
-        
-        tickCounter += 1;
+
+        if (this.stop > 0) {
+            this.stop -= 1;
+        } else {
+            tickCounter += 1;
+        }
         
         var new_obstacles = current_level.spawnObstacles(tickCounter);
         var new_objects = current_level.spawnObjects(tickCounter);
@@ -100,7 +104,7 @@ rince.level = (function(){
 
             if (child !== player){
                 if (child.hitRadius(player.x, player.y, player.hit) && player.immune == 0){
-                    child.hitAction(player); 
+                    child.hitAction(player, this); 
                     resetPlayerVerticalMove();    
                     resetPlayerHorizontalMove();            
                 }
@@ -139,20 +143,31 @@ rince.level = (function(){
     }
     
     function isStopped(){
-        return stop;
+        return this.stop > 0;
+    }
+
+    function ifNotStopped(callback) {
+        return function(){
+            if (this.stop == 0){
+                callback();
+            } else {
+                //pass
+            }
+        };
     }
     
     return {
         initialize: initialize,
         getObjects: getObjects,
-        movePlayerUp: movePlayerUp,
-        movePlayerDown: movePlayerDown,
-        movePlayerRight: movePlayerRight,
-        movePlayerLeft: movePlayerLeft,
+        movePlayerUp: ifNotStopped(movePlayerUp),
+        movePlayerDown: ifNotStopped(movePlayerDown),
+        movePlayerRight: ifNotStopped(movePlayerRight),
+        movePlayerLeft: ifNotStopped(movePlayerLeft),
         resetPlayerHorizontalMove: resetPlayerHorizontalMove,
         resetPlayerVerticalMove: resetPlayerVerticalMove,
         isStopped: isStopped,
-        tick: tick
+        tick: tick,
+        stop: stop
     };
     
 })();

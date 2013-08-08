@@ -1,8 +1,8 @@
 var rince = {
     screens: {},
     settings: {
-        fps: 30,
-        speed: 5,
+        fps: 60,
+        speed: 3,
         rows: 12,
         cols: 20,
         baseScore: 0,
