@@ -8,13 +8,14 @@ rince.player = (function(){
 	
 	Player.prototype.bounds = 0;
 	Player.prototype.hit = 0;
-	Player.prototype.idle = false;
+	Player.prototype.idle = 0;
     Player.prototype.immune = 0;
 		
 	Player.prototype.BitmapAnimation_initialize = Player.prototype.initialize;
 	
 	var quaterFrameSize;
 	var previousDir = 0;
+    var items = [];
 	
 	Player.prototype.initialize = function (imgPlayer, x_end, y_end) {
         var localSpriteSheet = new createjs.SpriteSheet({
@@ -24,7 +25,8 @@ rince.player = (function(){
                 run: [3, 29, "run", 2],
                 faster: [3, 29, "faster", 1],
                 slower: [3, 29, "slower", 3],
-                fall: [1, 2, "run", 2]
+                fall: [30, 65, "lie", 1],
+                lie: [65, 65, "run", 1]
             }
         });
         
@@ -51,7 +53,7 @@ rince.player = (function(){
 	}
 	
 	Player.prototype.tick = function () {
-        if (!this.idle) {
+        if (this.idle == 0) {
             if (this.immune > 0) {
                 this.immune -= 1;
             }
@@ -76,6 +78,11 @@ rince.player = (function(){
             	previousDir = 0;
             	this.gotoAndPlay("run");  	
             }
+        } else {
+            if (this.idle == 1) {
+                this.gotoAndPlay("run");
+            }
+            this.idle -= 1;
         }
     }
 	

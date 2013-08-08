@@ -29,6 +29,7 @@ rince.levels = (function(){
             y: 195,
             hitAction: function(player, level){
                 player.immune = 2*rince.settings.fps;
+                player.idle = rince.settings.fps;
                 player.gotoAndPlay("fall");
                 level.stop = rince.settings.fps;
             }
@@ -36,7 +37,7 @@ rince.levels = (function(){
 
         function spawnObsatacles(tick){
             var obstacles = [];
-            if (tick % 150 === 0){
+            if (tick % 300 === 0){
                 var o = obstacle_types[0];
                 var obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
                 obstacles.push(obstacle);
