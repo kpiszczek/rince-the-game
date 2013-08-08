@@ -20,6 +20,20 @@ rince.levels = (function(){
 
         var obstacle_types = [];
 
+        var boss = {
+            image: image,
+            w: image.width,
+            h: image.height,
+            x: Math.floor(image.width/2),
+            y: 100,
+            hitAction: function(player, level){
+
+            },
+            hitArea: function(player) {
+
+            }
+        }
+
         obstacle_types.push({
             name: "tree",
             image: image,
@@ -46,9 +60,9 @@ rince.levels = (function(){
             return obstacles;
         }
 
-        function spawnObjects(tick){
-            var objects = [];
-            return objects;
+        function spawnItems(tick){
+            var items = [];
+            return items;
         }
 
         function spawnMonsters(tick){
@@ -56,11 +70,15 @@ rince.levels = (function(){
             return monsters;
         }
 
+        function spawnBoss(tick) {
+            return false;
+        }
+
         return {
             name: "Sto Lat",
             obstacle_types: obstacle_types,
             spawnObstacles: spawnObsatacles,
-            spawnObjects: spawnObjects,
+            spawnItems: spawnItems,
             spawnMonsters: spawnMonsters
         }
 
