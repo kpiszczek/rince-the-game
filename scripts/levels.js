@@ -3,37 +3,52 @@ rince.levels = (function(){
     var levels = [];
     var cellSize;
     var Obstacle;
+    var Boss;
     var rows;
     var cellSize;
+    var speed;
 
     function initialize(){
         cellSize = rince.settings.cellSize;
         levels.push(createLevel1());
 
         Obstacle = rince.obstacle.Obstacle;
+        Boss = rince.boss.Boss;
         rows = rince.settings.rows;
         cellSize = rince.settings.cellSize;
+        speed = rince.settings.speed;
     }
 
     function createLevel1(){
-        var image = rince.images["images/tree"+cellSize+".png"];
-
+        var image;
         var obstacle_types = [];
 
+        var bimage = rince.images["images/2flowersprite"+cellSize+".png"];
         var boss = {
-            image: image,
-            w: image.width,
-            h: image.height,
-            x: Math.floor(image.width/2),
+            name: "Twoflower",
+            image: bimage,
+            w: bimage.width/24,
+            h: bimage.height,
+            x: Math.floor(bimage.width/48),
             y: 100,
+            animName: "photo",
+            bossAnimations: {
+                photo: [0, 23, "photo", 2]
+            },
             hitAction: function(player, level){
 
+            },
+            tickAction: function() {
+                if (!rince.level.isStopped()){
+                    this.x -= speed;
+                }
             },
             hitArea: function(player) {
 
             }
         }
 
+        image = rince.images["images/tree"+cellSize+".png"];
         obstacle_types.push({
             name: "tree",
             image: image,
@@ -71,7 +86,13 @@ rince.levels = (function(){
         }
 
         function spawnBoss(tick) {
-            return false;
+            var b;
+            if (tick % 500 === 0){
+                b = new Boss(boss.name, boss.image, boss.w, boss.h, boss.x, boss.y, boss.animName,
+                             boss.bossAnimations, boss.hitAction, boss.tickAction, boss.hitArea);
+                b.y = 250;
+            }
+            return b;
         }
 
         return {
@@ -79,9 +100,9 @@ rince.levels = (function(){
             obstacle_types: obstacle_types,
             spawnObstacles: spawnObsatacles,
             spawnItems: spawnItems,
-            spawnMonsters: spawnMonsters
+            spawnMonsters: spawnMonsters,
+            spawnBoss: spawnBoss
         }
-
     }
 
     function currentLevel(){

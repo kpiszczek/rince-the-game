@@ -1,6 +1,6 @@
 rince.boss = (function(){
-	function Boss(bossName, img, w, h, x, y, bossAnimations, hitAction, tickAction, hitArea){
-		this.initialize(bossName, img, w, h, x, y, bossAnimations, hitAction, tickAction, hitArea);
+	function Boss(bossName, img, w, h, x, y, animName, bossAnimations, hitAction, tickAction, hitArea){
+		this.initialize(bossName, img, w, h, x, y, animName, bossAnimations, hitAction, tickAction, hitArea);
 	}
 	Boss.prototype = new createjs.BitmapAnimation();
 	
@@ -12,7 +12,7 @@ rince.boss = (function(){
 	var frameSize;
 	var speed = rince.settings.speed;
 	
-	Boss.prototype.initialize = function (bossName, img, w, h, x, y, bossAnimations, hitAction, tickAction, hitArea) {
+	Boss.prototype.initialize = function (bossName, img, w, h, x, y, animName, bossAnimations, hitAction, tickAction, hitArea) {
         var localSpriteSheet = new createjs.SpriteSheet({
             images: [img], //image to use
             frames: {width: w, height: h, regX: x, regY: y},
@@ -25,7 +25,7 @@ rince.boss = (function(){
         
         frameSize = this.spriteSheet.getFrame(0).rect.width;
         
-        this.gotoAndPlay("idle");
+        this.gotoAndPlay(animName);
         
         this.name = bossName;
         
@@ -38,10 +38,6 @@ rince.boss = (function(){
 
         this.hitArea = hitArea;
 	}
-	
-	Boss.prototype.tick = function(){
-
-	};
 	
 	Boss.prototype.hitPoint = function(tX, tY){
 		return this.hitRadius(tX, tY, 0)
