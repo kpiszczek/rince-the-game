@@ -34,6 +34,7 @@ rince.display = (function(){
         stage.removeAllChildren();
         createjs.Ticker.removeAllListeners();
         stage.update();
+        setup();
     }
     
     function createAndAddBackground(){
@@ -116,6 +117,7 @@ rince.display = (function(){
     }
    
    return {
-       initialize: initialize
+       initialize: initialize,
+       reset: reset,
    };   
 })();

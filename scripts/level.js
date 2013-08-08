@@ -36,6 +36,8 @@ rince.level = (function(){
         container.addChild(player);
         player.x = 80;
         player.y = 200;
+
+        player.items = [];
         
         callback();
     }

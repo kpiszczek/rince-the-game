@@ -12,11 +12,14 @@ rince.levels = (function(){
     }
 
     function nextLevel(){
-        if (current_level_idx < levels.length){
-            current_level_idx += 1;
+        if (this.current_level_idx < (levels.length - 1)){
+            this.current_level_idx += 1;
         }
-        return currentLevel();
+        rince.level.initialize(function (){
+            rince.display.reset()
+        });
     }
+
 
     return {
         initialize: initialize,

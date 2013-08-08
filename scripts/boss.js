@@ -43,8 +43,8 @@ rince.boss = (function(){
 		return this.hitRadius(tX, tY, 0)
 	}
 	
-	Boss.prototype.hitRadius = function(){
-
+	Boss.prototype.hitRadius = function(tX, tY, tHit){
+		return this.hitArea(tX, tY, tHit);
 	};
 	
 	return {

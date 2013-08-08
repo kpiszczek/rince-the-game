@@ -31,15 +31,20 @@ rince.level1 = (function(){
                 photo: [0, 23, "photo", 2]
             },
             hitAction: function(player, level){
-
+            	rince.levels.nextLevel();
             },
             tickAction: function() {
                 if (!rince.level.isStopped()){
                     this.x -= speed;
                 }
             },
-            hitArea: function(player) {
-
+            hitArea: function(tX, tY, tHit) {
+            	if (tX - tHit > this.x + this.hit) { return; }
+		        if (tX + tHit < this.x - this.hit) { return; }
+		        if (tY - tHit > this.y + this.hit) { return; }
+		        if (tY + tHit < this.y - this.hit) { return; }
+		        
+		        return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             }
         }
 
