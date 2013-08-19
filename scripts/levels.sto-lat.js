@@ -4,7 +4,8 @@ rince.level1 = (function(){
 		cellSize,
 		Boss,
 		Obstacle,
-		rows;
+		rows,
+        audio;
 
 	function initialize() {
 		cellSize = rince.settings.cellSize;
@@ -12,6 +13,7 @@ rince.level1 = (function(){
         Boss = rince.boss.Boss;
         rows = rince.settings.rows;
         speed = rince.settings.speed;
+        audio = rince.audio;
 	}
 
 	function createLevel(){
@@ -61,6 +63,7 @@ rince.level1 = (function(){
             x: Math.floor(image.width/2),
             y: 195,
             hitAction: function(player, level){
+                audio.play("body-fall");
                 player.immune = 2*rince.settings.fps;
                 player.idle = rince.settings.fps;
                 player.gotoAndPlay("fall");

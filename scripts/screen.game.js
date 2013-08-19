@@ -62,7 +62,7 @@ rince.screens["game-screen"] = (function(){
     function playGameEvents(events){
         if (events.length > 0){
             var levelEvent = events.shift();
-            var next = function(){
+            var next = function() {
                 playGameEvents(events);
             };
             
@@ -75,6 +75,7 @@ rince.screens["game-screen"] = (function(){
                     break;
             }
         } else {
+            
         }
     }
     
