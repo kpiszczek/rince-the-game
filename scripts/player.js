@@ -19,13 +19,13 @@ rince.player = (function(){
 	Player.prototype.initialize = function (imgPlayer, x_end, y_end) {
         var localSpriteSheet = new createjs.SpriteSheet({
             images: [imgPlayer], //image to use
-            frames: { width: 128, height: 126, regX:60, regY: 50 },
+            frames: { width: 152, height: 130, regX:75, regY: 65 },
             animations: {
-                run: [3, 29, "run", 2],
-                faster: [3, 29, "faster", 1],
-                slower: [3, 29, "slower", 3],
-                fall: [30, 65, "lie", 1],
-                lie: [65, 65, "run", 1]
+                run: [0, 27, "run", 2],
+                faster: [0, 27, "faster", 1],
+                slower: [0, 27, "slower", 3],
+                fall: [28, 63, "lie", 1],
+                lie: [63, 63, "run", 1]
             }
         });
         

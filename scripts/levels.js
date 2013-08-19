@@ -5,6 +5,9 @@ rince.levels = (function(){
     function initialize(){
         rince.level1.initialize();
         levels.push(rince.level1.createLevel());
+
+        rince.level2.initialize();
+        levels.push(rince.level2.createLevel());
     }
 
     function currentLevel(){
@@ -12,14 +15,16 @@ rince.levels = (function(){
     }
 
     function nextLevel(){
-        if (this.current_level_idx < (levels.length - 1)){
-            this.current_level_idx += 1;
+        console.log("previus level: " + current_level_idx);
+        if (current_level_idx < (levels.length - 1)){
+            current_level_idx += 1;
         }
+        console.log("next level: " + current_level_idx);
         setTimeout(function(){
             rince.level.initialize(function (){
                 rince.display.reset(function(){});
             })
-        }, 1000);
+        }, 500);
     }
 
 

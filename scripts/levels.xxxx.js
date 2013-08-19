@@ -1,4 +1,4 @@
-rince.level1 = (function(){
+rince.level2 = (function(){
 
 	var speed,
 		cellSize,
@@ -20,7 +20,7 @@ rince.level1 = (function(){
         var image;
         var obstacle_types = [];
 
-        var landscape = rince.images["images/landscape"+cellSize+".png"];
+        var landscape = rince.images["images/landscapeXXXX"+cellSize+".png"];
         var sky = rince.images["images/clouds"+cellSize+".png"];
 
         image = rince.images["images/2flowersprite"+cellSize+".png"];
@@ -37,10 +37,6 @@ rince.level1 = (function(){
                 photo: [0, 23, "photo", 2]
             },
             hitAction: function(player, level){
-                player.immune = 2*rince.settings.fps;
-                player.idle = rince.settings.fps;
-                level.stop = rince.settings.fps;
-                console.log("next level");
             	rince.levels.nextLevel();
             },
             tickAction: function() {
@@ -62,8 +58,8 @@ rince.level1 = (function(){
         obstacle_types.push({
             name: "tree",
             image: image,
-            h: image.height,
             w: image.width,
+            h: image.height,
             x: Math.floor(image.width/2),
             y: 195,
             hitAction: function(player, level){
@@ -74,7 +70,7 @@ rince.level1 = (function(){
                 level.stop = rince.settings.fps;
             }
         });
-
+        
         function spawnObsatacles(tick){
             var obstacles = [];
             if (tick % 300 === 0){
