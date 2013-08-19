@@ -1,6 +1,6 @@
 rince.levels = (function(){
-    var current_level_idx = 0;
-    var levels = [];
+    var current_level_idx = 0,
+        levels = [];
 
     function initialize(){
         rince.level1.initialize();
@@ -17,7 +17,7 @@ rince.levels = (function(){
         }
         setTimeout(function(){
             rince.level.initialize(function (){
-                rince.display.reset()
+                rince.display.reset(function(){});
             })
         }, 1000);
     }

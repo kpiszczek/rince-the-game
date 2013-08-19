@@ -1,17 +1,17 @@
 rince.input = (function (){
     
-    var dom = rince.dom;
-    var $ = dom.$;
-    var settings = rince.settings;
-    var controls = rince.controls;
-    var inputHandlers;
-    var keys = {
-        37: "KEY_LEFT",
-        38: "KEY_UP",
-        39: "KEY_RIGHT",
-        40: "KEY_DOWN",
-        32: "KEY_SPACE"
-    };
+    var dom = rince.dom,
+        $ = dom.$,
+        settings = rince.settings,
+        controls = rince.controls,
+        keys = {
+            37: "KEY_LEFT",
+            38: "KEY_UP",
+            39: "KEY_RIGHT",
+            40: "KEY_DOWN",
+            32: "KEY_SPACE"
+        },
+        inputHandlers;
     
     function initialize(){
         var landscape = $("#game-screen .game-landscape")[0];

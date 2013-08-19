@@ -1,7 +1,7 @@
 rince.screens["main-menu"] = (function(){
-    var dom = rince.dom;
-    var game = rince.game;
-    var firstRun = true;
+    var dom = rince.dom,
+        game = rince.game,
+        firstRun = true;
     
     function setup(){
         dom.bind("#main-menu ul.menu", "click", function(e){     

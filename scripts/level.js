@@ -88,15 +88,6 @@ rince.level = (function(){
             boss = new_boss;
             container.addChild(boss);
         }
-
-        /*
-        if (tickCounter % 150 == 0){
-            var o = obstacle_types[0];
-            var obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
-            container.addChild(obstacle);
-            obstacles.push(obstacle);
-            obstacle.y = Math.floor(Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize);
-        }*/
         
         for (var i=0; i<l; i++){
             child = container.children[i];

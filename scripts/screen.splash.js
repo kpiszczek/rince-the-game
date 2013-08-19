@@ -1,8 +1,8 @@
 rince.screens["splash-screen"] = (function() {
-    var game = rince.game;
-    var dom = rince.dom;
-    var firstRun = true;
-    var $ = dom.$;
+    var game = rince.game,
+        dom = rince.dom,
+        firstRun = true,
+        $ = dom.$;
     
     function setup(getLoadProgress){
         var scr = $("#splash-screen")[0];

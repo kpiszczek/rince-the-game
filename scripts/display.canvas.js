@@ -1,16 +1,15 @@
 rince.display = (function(){
     
-    var dom = rince.dom;
-    var $ = dom.$;
-    var canvas, ctx, landBitmap1, skyBitmap1, landBitmap2, landBitmap2;
-    var cols, rows, cellSize, stage;
-    var level = rince.level;
-    var previousCycle;
-    var firstRun = true;
-    var speed;
-    var landscapePos = 0;
-    var skyPos = 0;
-    var objects;
+    var dom = rince.dom,
+        $ = dom.$,
+        level = rince.level,
+        firstRun = true,
+        landscapePos = 0,
+        skyPos = 0,
+        canvas, ctx, 
+        landBitmap1, skyBitmap1, landBitmap2, landBitmap2,
+        cols, rows, cellSize, stage, previousCycle,
+        speed, objects;
     
     function init(){
         var landscapeElement = $("#game-screen .game-landscape")[0];
@@ -30,11 +29,12 @@ rince.display = (function(){
         stage = new createjs.Stage(canvas)       
     }
     
-    function reset(){
+    function reset(callback) {
         stage.removeAllChildren();
         createjs.Ticker.removeAllListeners();
         stage.update();
         setup();
+        callback();
     }
     
     function createAndAddBackground(){

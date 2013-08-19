@@ -1,6 +1,6 @@
 rince.game = (function(){
-    var dom = rince.dom;
-    var $ = dom.$;
+    var dom = rince.dom,
+        $ = dom.$;
     
     function showScreen(screenId){
         // sizzle zawsze zwraca tablicę elementów

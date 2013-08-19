@@ -1,9 +1,10 @@
 rince.screens["game-screen"] = (function(){
     
-    var level = rince.level;
-    var display = rince.display;
-    var input = rince.input;
-    var firstRun = true;
+    var level = rince.level,
+        display = rince.display,
+        input = rince.input,
+        firstRun = true,
+        audio = rince.audio;
     
     function run(){
         if (firstRun){
@@ -14,7 +15,9 @@ rince.screens["game-screen"] = (function(){
 
         level.initialize(function(){
             display.initialize(function(){
-                   // inicjalizacja
+                display.reset(function(){
+                    audio.initialize();
+                });
             });
         });
     }
