@@ -1,22 +1,22 @@
 rince.level = (function(){
-    var settings;
-    var cellSize;
-    var cols;
-    var rows;
-    var scores;
-    var numEnemyTypes;
-    var enemyProbs;
-    var player;
-    var stop = 0;
-    var container;
-    var tickCounter = 0;
-    var Obstacle;
-    var obstacle_types = [];
-    var obstacles = [];
-    var items = [];
-    var monsters = [];
-    var boss;
-    var current_level;
+    var stop = 0,
+        tickCounter = 0,
+        obstacle_types = [],
+        obstacles = [],
+        items = [],
+        monsters = [],
+        settings,
+        cellSize,
+        cols,
+        rows,
+        scores,
+        numEnemyTypes,
+        enemyProbs,
+        player,
+        container,
+        Obstacle,
+        boss,
+        current_level;
 
     function initialize(callback){
         settings = rince.settings;
