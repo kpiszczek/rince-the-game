@@ -38,10 +38,10 @@ rince.display = (function(){
     }
     
     function createAndAddBackground(){
-        landBitmap1 = new createjs.Bitmap(rince.images["images/landscape" + cellSize + ".png"]);
-        skyBitmap1 = new createjs.Bitmap(rince.images["images/clouds" + cellSize + ".png"]);
-        landBitmap2 = new createjs.Bitmap(rince.images["images/landscape" + cellSize + ".png"]);
-        skyBitmap2 = new createjs.Bitmap(rince.images["images/clouds" + cellSize + ".png"]);
+        landBitmap1 = new createjs.Bitmap(rince.levels.currentLevel().landscape);
+        skyBitmap1 = new createjs.Bitmap(rince.levels.currentLevel().sky);
+        landBitmap2 = new createjs.Bitmap(rince.levels.currentLevel().landscape);
+        skyBitmap2 = new createjs.Bitmap(rince.levels.currentLevel().sky);
         
         landBitmap1.x = landscapePos;
         landBitmap2.x = canvas.width - landscapePos;
@@ -79,7 +79,7 @@ rince.display = (function(){
     function drawLandscape(){
         if (!level.isStopped()){
             landscapePos = (landscapePos + speed) % canvas.width;
-            skyPos = (skyPos + Math.floor(speed/5)) % canvas.width;
+            skyPos = (skyPos + Math.round(speed/5)) % canvas.width;
         }
         
         var intersection = canvas.width - landscapePos;

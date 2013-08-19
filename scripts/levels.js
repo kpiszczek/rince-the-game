@@ -15,9 +15,11 @@ rince.levels = (function(){
         if (this.current_level_idx < (levels.length - 1)){
             this.current_level_idx += 1;
         }
-        rince.level.initialize(function (){
-            rince.display.reset()
-        });
+        setTimeout(function(){
+            rince.level.initialize(function (){
+                rince.display.reset()
+            })
+        }, 1000);
     }
 
 

@@ -18,13 +18,17 @@ rince.level1 = (function(){
         var image;
         var obstacle_types = [];
 
-        var bimage = rince.images["images/2flowersprite"+cellSize+".png"];
+        var landscape = rince.images["images/landscape"+cellSize+".png"];
+        var sky = rince.images["images/clouds"+cellSize+".png"];
+
+        image = rince.images["images/2flowersprite"+cellSize+".png"];
+
         var boss = {
             name: "Twoflower",
-            image: bimage,
-            w: bimage.width/24,
-            h: bimage.height,
-            x: Math.floor(bimage.width/48),
+            image: image,
+            w: image.width/24,
+            h: image.height,
+            x: Math.floor(image.width/48),
             y: 100,
             animName: "photo",
             bossAnimations: {
@@ -97,6 +101,8 @@ rince.level1 = (function(){
 
         return {
             name: "Sto Lat",
+            landscape: landscape,
+            sky: sky,
             obstacle_types: obstacle_types,
             spawnObstacles: spawnObsatacles,
             spawnItems: spawnItems,
