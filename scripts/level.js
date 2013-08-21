@@ -55,31 +55,41 @@ rince.level = (function(){
     }
     
     function tick(){
-        var child;
-        var l = container.getNumChildren();
+        var l = container.getNumChildren(),
+            child, 
+            new_boss,
+            new_obstacles = [],
+            new_items = [],
+            new_monsters = [],
+            i;
 
         if (this.stop > 0) {
             this.stop -= 1;
         } else {
             tickCounter += 1;
         }
-        
-        var new_obstacles = current_level.spawnObstacles(tickCounter);
-        var new_items = current_level.spawnItems(tickCounter);
-        var new_monsters = current_level.spawnMonsters(tickCounter);
-        var new_boss = current_level.spawnBoss(tickCounter);
 
-        for (var i = 0; i < new_obstacles.length; i++) {
+        if (tickCounter % 30 == 0 && !isStopped()) {
+            new_obstacles = current_level.spawnObstacles();
+        } else if (tickCounter % 43 == 0 && !isStopped) {
+            new_monsters = current_level.spawnMonsters();
+        }  else if (tickCounter % 503 == 0 && !isStopped()) {
+            new_boss = current_level.spawnBoss();
+        }
+        
+        //var new_items = current_level.spawnItems(tickCounter);
+
+        for (i = 0; i < new_obstacles.length; i++) {
             obstacles.push(new_obstacles[i]);
             container.addChild(new_obstacles[i]);        
         }
 
-        for (var i = 0; i < new_items.length; i++){
+        for (i = 0; i < new_items.length; i++){
             items.push(new_objects[i]);
             container.addChild(new_items[i]);
         }
 
-        for (var i = 0; i < new_monsters; i++) {
+        for (i = 0; i < new_monsters; i++) {
             monsters.push(new_monsters[i]);
             container.addChild(new_monsters[i]);
         }
@@ -89,7 +99,7 @@ rince.level = (function(){
             container.addChild(boss);
         }
         
-        for (var i=0; i<l; i++){
+        for (i=0; i<l; i++){
             child = container.children[i];
             
             child.tick();
