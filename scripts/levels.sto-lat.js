@@ -10,6 +10,7 @@ rince.level1 = (function(){
 	function initialize() {
 		cellSize = rince.settings.cellSize;
 		Obstacle = rince.obstacle.Obstacle;
+        Monster = rince.monster.Monster;
         Boss = rince.boss.Boss;
         rows = rince.settings.rows;
         speed = rince.settings.speed;
@@ -17,8 +18,9 @@ rince.level1 = (function(){
 	}
 
 	function createLevel(){
-        var image;
-        var obstacle_types = [];
+        var obstacle_types = [],
+            monster_types = [],
+            image;
 
         var landscape = rince.images["images/landscape"+cellSize+".png"];
         var sky = rince.images["images/clouds"+cellSize+".png"];
@@ -31,7 +33,7 @@ rince.level1 = (function(){
             w: image.width/24,
             h: image.height,
             x: Math.floor(image.width/48),
-            y: 100,
+            y: 45,
             animName: "photo",
             bossAnimations: {
                 photo: [0, 23, "photo", 2]
@@ -40,7 +42,6 @@ rince.level1 = (function(){
                 player.immune = 2*rince.settings.fps;
                 player.idle = rince.settings.fps;
                 level.stop = rince.settings.fps;
-                console.log("next level");
             	rince.levels.nextLevel();
             },
             tickAction: function() {
@@ -66,22 +67,47 @@ rince.level1 = (function(){
             w: image.width,
             x: Math.floor(image.width/2),
             y: 195,
-            hitAction: function(player, level){
+            hitAction: function(player, level) {
                 audio.play("body-fall");
                 player.immune = 2*rince.settings.fps;
                 player.idle = rince.settings.fps;
                 player.gotoAndPlay("fall");
                 level.stop = rince.settings.fps;
-            }
+            },
+            probability: 0.25
+        });
+
+        image = rince.images["images/hedgehog"+cellSize+".png"];
+        monster_types.push({
+            name: "hedgehog",
+            image: image,
+            h: image.height,
+            w: image.width/24,
+            x: Math.floor(image.width/48),
+            y: 10,
+            hitAction: function(player, level) {
+                audio.play("body-fall");
+                player.immune = 2*rince.settings.fps;
+                player.idle = rince.settings.fps;
+                player.gotoAndPlay("fall");
+                level.stop = rince.settings.fps;
+            } 
         });
 
         function spawnObsatacles(tick){
-            var obstacles = [];
-            if (tick % 300 === 0){
-                var o = obstacle_types[0];
-                var obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
-                obstacles.push(obstacle);
-                obstacle.y = Math.floor(Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize);
+            var obstacles = [],
+                obstacle,
+                o;
+
+            if (tick % 30 === 0){
+                for (var i = 0; i < obstacle_types.length; i++){
+                    o = obstacle_types[0];
+                    if (o.probability > Math.random()){
+                        obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
+                        obstacles.push(obstacle);
+                        obstacle.y = Math.floor(Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize);
+                    }
+                }
             }
             return obstacles;
         }
@@ -93,6 +119,12 @@ rince.level1 = (function(){
 
         function spawnMonsters(tick){
             var monsters = []
+            if (tick % 300 === 0){
+                var m = monster_types[0];
+                var monster = new Monster(m.name, m.image, m.w, m.h, m.x, m.y, m.hitAction)
+                monsters.push(monster);
+                monster.y = Math.floor(Math.random()*(0.75*rows*cellSize - (m.h - m.y)) + 0.25*rows*cellSize);
+            }
             return monsters;
         }
 
@@ -101,7 +133,7 @@ rince.level1 = (function(){
             if (tick % 500 === 0){
                 b = new Boss(boss.name, boss.image, boss.w, boss.h, boss.x, boss.y, boss.animName,
                              boss.bossAnimations, boss.hitAction, boss.tickAction, boss.hitArea);
-                b.y = 250;
+                b.y = 100;
             }
             return b;
         }

@@ -95,6 +95,7 @@ window.addEventListener("load", function(){
                     "loader!images/tree" + rince.settings.cellSize + ".png",   
                     "loader!images/2flowersprite" + rince.settings.cellSize + ".png",
                     "loader!images/landscapeXXXX" + rince.settings.cellSize + ".png",
+                    "loader!images/hedgehog" + rince.settings.cellSize + ".png",
                     "loader!scripts/audio.js",         
                     "loader!scripts/input.js",
                     "loader!scripts/levels.sto-lat.js",
