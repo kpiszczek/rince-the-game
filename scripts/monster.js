@@ -1,6 +1,6 @@
 rince.monster = (function(){
-	function Monster(monsterName, monsterSpriteSheet, w, h, x, y, probability, animName, monsterAnimations, hitAction, tickAction, hitArea){
-		this.initailize(monsterName, monsterSpriteSheet, w, h, x, y, probability, animName, monsterAnimations, hitAction, tickAction, hitArea);
+	function Monster(monsterName, monsterSpriteSheet, w, h, x, y, animName, monsterAnimations, hitAction, tickAction, hitArea){
+		this.initailize(monsterName, monsterSpriteSheet, w, h, x, y, animName, monsterAnimations, hitAction, tickAction, hitArea);
 	}
 	
 	Monster.prototype = new createjs.BitmapAnimation();
@@ -11,7 +11,7 @@ rince.monster = (function(){
 	var frameSize;
 	var speed = [0,0];
 
-	Monster.prototype.initailize = function (monsterName, monsterSpriteSheet, w, h, x, y, probability, animName, monsterAnimations, hitAction, tickAction, hitArea){
+	Monster.prototype.initailize = function (monsterName, monsterSpriteSheet, w, h, x, y, animName, monsterAnimations, hitAction, tickAction, hitArea){
 		var localSpriteSheet = new createjs.SpriteSheet({
 			images: [monsterSpriteSheet],
 			frames: {width: w, height: h, regX: x, regY: y},
@@ -37,8 +37,7 @@ rince.monster = (function(){
         this.tick = tickAction;
 
         this.hitArea = hitArea;
-
-        this.probability = probability;
+        console.log(hitArea)
 	}
 
 	Monster.prototype.hitPoint = function(tX, tY){

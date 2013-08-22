@@ -1,7 +1,9 @@
 rince.boss = (function(){
+
 	function Boss(bossName, img, w, h, x, y, animName, bossAnimations, hitAction, tickAction, hitArea){
 		this.initialize(bossName, img, w, h, x, y, animName, bossAnimations, hitAction, tickAction, hitArea);
 	}
+	
 	Boss.prototype = new createjs.BitmapAnimation();
 	
 	Boss.prototype.bounds = 0;

@@ -71,8 +71,9 @@ rince.level = (function(){
 
         if (tickCounter % 30 == 0 && !isStopped()) {
             new_obstacles = current_level.spawnObstacles();
-        } else if (tickCounter % 43 == 0 && !isStopped) {
+        } else if (tickCounter % 43 == 0 && !isStopped()) {
             new_monsters = current_level.spawnMonsters();
+            //console.log(new_monsters);
         } else if (tickCounter % 503 == 0 && !isStopped()) {
             new_boss = current_level.spawnBoss();
         }
@@ -89,7 +90,7 @@ rince.level = (function(){
             container.addChild(new_items[i]);
         }
 
-        for (i = 0; i < new_monsters; i++) {
+        for (i = 0; i < new_monsters.length; i++) {
             monsters.push(new_monsters[i]);
             container.addChild(new_monsters[i]);
         }
@@ -144,10 +145,6 @@ rince.level = (function(){
     
     function resetPlayerVerticalMove(){
         player.direction[1] = 0;
-    }
-    
-    function randomEnemy(){
-        return null;
     }
     
     function isStopped(){

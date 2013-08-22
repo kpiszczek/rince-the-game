@@ -4,6 +4,7 @@ rince.level1 = (function(){
 		cellSize,
 		Boss,
 		Obstacle,
+        Monster,
 		rows,
         audio,
         fps,
@@ -89,9 +90,9 @@ rince.level1 = (function(){
             w: image.width/24,
             x: Math.floor(image.width/48),
             y: 10,
-            animName: 'move-left',
+            animName: 'move_left',
             monsterAnimations: {
-                
+                move_left: [0, 23, 'move_left', 1]
             },
             hitAction: function(player, level) {
                 audio.play("body-fall");
@@ -101,10 +102,17 @@ rince.level1 = (function(){
                 level.stop = fps;
             },
             tickAction: function(){
-
+                if (!level.isStopped()){
+                    this.x -= speed;
+                }
             },
-            hitArea: function(){
-
+            hitArea: function(tX, tY, tHit) {
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
+                
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
             probability: 0.3
         });
@@ -137,10 +145,14 @@ rince.level1 = (function(){
 
             for (var i = 0; i < monster_types.length; i++) {
                 m = monster_types[i];
-                //monster = new Monster(m.name, m.image, m.w, m.h, m.x, m.y, m.hitAction);
-                //monsters.push(monster);
-                //monster.y = Math.floor(Math.random()*(0.75*rows*cellSize - (m.h - m.y)) + 0.25*rows*cellSize);
+                if (m.probability > Math.random()){
+                    monster = new Monster(m.name, m.image, m.w, m.h, m.x, m.y, m.animName, 
+                        m.monsterAnimations, m.hitAction, m.tickAction, m.hitArea);
+                    monsters.push(monster);
+                    monster.y = 150;
+                }
             }
+            //console.log(monsters)
             return monsters;
         }
 
