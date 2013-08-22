@@ -9,7 +9,6 @@ rince.monster = (function(){
 	Monster.prototype.BitmapAnimation_initialize = Monster.prototype.initialize;
 
 	var frameSize;
-	var speed = [0,0];
 
 	Monster.prototype.initailize = function (monsterName, monsterSpriteSheet, w, h, x, y, animName, monsterAnimations, hitAction, tickAction, hitArea){
 		var localSpriteSheet = new createjs.SpriteSheet({
@@ -18,6 +17,7 @@ rince.monster = (function(){
 			animations: monsterAnimations
 		});
 
+		this.speed = [-1, 0];
 
         this.hitAction = hitAction;
         
@@ -37,7 +37,6 @@ rince.monster = (function(){
         this.tick = tickAction;
 
         this.hitArea = hitArea;
-        console.log(hitArea)
 	}
 
 	Monster.prototype.hitPoint = function(tX, tY){

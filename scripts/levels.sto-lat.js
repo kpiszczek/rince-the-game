@@ -87,12 +87,13 @@ rince.level1 = (function(){
             name: "hedgehog",
             image: image,
             h: image.height,
-            w: image.width/24,
-            x: Math.floor(image.width/48),
-            y: 10,
+            w: image.width/48,
+            x: Math.floor(image.width/96),
+            y: -40,
             animName: 'move_left',
             monsterAnimations: {
-                move_left: [0, 23, 'move_left', 1]
+                move_left: [0, 23, 'move_left', 1],
+                move_right: [24, 47, 'move_right', 1]
             },
             hitAction: function(player, level) {
                 audio.play("body-fall");
@@ -102,9 +103,25 @@ rince.level1 = (function(){
                 level.stop = fps;
             },
             tickAction: function(){
+
                 if (!level.isStopped()){
                     this.x -= speed;
                 }
+
+                if (this.currentFrame == 23 || this.currentFrame == 47) {
+                    this.speed[0] = choose([-1, 1]);
+                    this.speed[1] = choose([-1, 1]);
+
+                    if (this.speed[0] < 0){
+                        this.gotoAndPlay('move_left');
+                    } else {
+                        this.gotoAndPlay('move_right');
+                    }
+
+                }
+
+                this.x += this.speed[0];
+                this.y += this.speed[1];
             },
             hitArea: function(tX, tY, tHit) {
                 if (tX - tHit > this.x + this.hit) { return; }
@@ -149,7 +166,7 @@ rince.level1 = (function(){
                     monster = new Monster(m.name, m.image, m.w, m.h, m.x, m.y, m.animName, 
                         m.monsterAnimations, m.hitAction, m.tickAction, m.hitArea);
                     monsters.push(monster);
-                    monster.y = 150;
+                    monster.y = Math.floor(Math.random()*(0.75*rows*cellSize - (m.h - m.y)) + 0.25*rows*cellSize);
                 }
             }
             //console.log(monsters)
