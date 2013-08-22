@@ -17,9 +17,13 @@ rince.obstacle = (function(){
             images: [imgObstacle], //image to use
             frames: {width: w, height: h, regX: x, regY: y},
             animations: {
-                idle: {
+                left: {
                 	frames: [0],
-                	next: "idle"
+                	next: 'left'
+                },
+                right: {
+                	frames: [1],
+                	next: 'right'
                 }
             }
         });
@@ -30,7 +34,7 @@ rince.obstacle = (function(){
         
         frameSize = this.spriteSheet.getFrame(0).rect.width;
         
-        this.gotoAndPlay("idle");
+        (Math.random() > 0.5) ? this.gotoAndPlay('left') : this.gotoAndPlay('right');
         
         this.name = obstacleName;
         

@@ -73,7 +73,7 @@ rince.level = (function(){
             new_obstacles = current_level.spawnObstacles();
         } else if (tickCounter % 43 == 0 && !isStopped) {
             new_monsters = current_level.spawnMonsters();
-        }  else if (tickCounter % 503 == 0 && !isStopped()) {
+        } else if (tickCounter % 503 == 0 && !isStopped()) {
             new_boss = current_level.spawnBoss();
         }
         

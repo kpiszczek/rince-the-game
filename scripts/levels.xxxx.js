@@ -1,20 +1,25 @@
 rince.level2 = (function(){
 
 	var speed,
-		cellSize,
-		Boss,
-		Obstacle,
-		rows,
-        audio;
+        cellSize,
+        Boss,
+        Obstacle,
+        rows,
+        audio,
+        fps,
+        level;
 
-	function initialize() {
-		cellSize = rince.settings.cellSize;
-		Obstacle = rince.obstacle.Obstacle;
+    function initialize() {
+        cellSize = rince.settings.cellSize;
+        Obstacle = rince.obstacle.Obstacle;
+        Monster = rince.monster.Monster;
         Boss = rince.boss.Boss;
         rows = rince.settings.rows;
         speed = rince.settings.speed;
         audio = rince.audio;
-	}
+        fps = rince.settings.fps;
+        level = rince.level;
+    }
 
 	function createLevel(){
         var image;

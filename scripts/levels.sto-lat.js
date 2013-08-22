@@ -68,8 +68,8 @@ rince.level1 = (function(){
             name: "tree",
             image: image,
             h: image.height,
-            w: image.width,
-            x: Math.floor(image.width/2),
+            w: image.width/2,
+            x: Math.floor(image.width/4),
             y: 195,
             hitAction: function(player, level) {
                 audio.play("body-fall");
@@ -91,7 +91,7 @@ rince.level1 = (function(){
             y: 10,
             animName: 'move-left',
             monsterAnimations: {
-
+                
             },
             hitAction: function(player, level) {
                 audio.play("body-fall");
