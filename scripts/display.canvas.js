@@ -6,10 +6,19 @@ rince.display = (function(){
         firstRun = true,
         landscapePos = 0,
         skyPos = 0,
-        canvas, ctx, 
-        landBitmap1, skyBitmap1, landBitmap2, landBitmap2,
-        cols, rows, cellSize, stage, previousCycle,
-        speed, objects;
+        canvas, 
+        ctx, 
+        landBitmap1, 
+        skyBitmap1, 
+        landBitmap2, 
+        landBitmap2,
+        cols, 
+        rows, 
+        cellSize, 
+        stage, 
+        previousCycle,
+        speed, 
+        objects;
     
     function init(){
         var landscapeElement = $("#game-screen .game-landscape")[0];

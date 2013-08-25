@@ -7,11 +7,6 @@ window.requestAnimationFrame = (function(){
         function(callback){
             window.setTimeout(callback, 1000/60);
         };
-        /*function(callback, element){
-            return window.setTimeout(function(){
-                callback(Date.now());
-            }, 1000/60);
-        };*/
 })();
 
 window.cancelRequestAnimationFrame = (function(){

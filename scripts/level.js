@@ -26,7 +26,6 @@ rince.level = (function(){
         cols = settings.cols;
         rows = settings.rows;
         container = new createjs.Container();
-        Obstacle = rince.obstacle.Obstacle;
         
         player = new rince.player.Player(rince.images["images/rincesprite" + cellSize + ".png"], 
                                          cols*cellSize, rows*cellSize);
@@ -55,7 +54,7 @@ rince.level = (function(){
     }
     
     function tick(){
-        var l = container.getNumChildren(),
+        var l = 0,
             child, 
             new_boss,
             new_obstacles = [],
@@ -69,36 +68,37 @@ rince.level = (function(){
             tickCounter += 1;
         }
 
-        if (tickCounter % 30 == 0 && !isStopped()) {
-            new_obstacles = current_level.spawnObstacles();
-        } else if (tickCounter % 43 == 0 && !isStopped()) {
-            new_monsters = current_level.spawnMonsters();
-            //console.log(new_monsters);
-        } else if (tickCounter % 503 == 0 && !isStopped()) {
-            new_boss = current_level.spawnBoss();
-        }
-        
-        //var new_items = current_level.spawnItems(tickCounter);
+        if (!isStopped()) {
+            if (tickCounter % 30 == 0) {
+                new_obstacles = current_level.spawnObstacles();
+            } else if (tickCounter % 43 == 0) {
+                new_monsters = current_level.spawnMonsters();
+            } else if (tickCounter % 503 == 0) {
+                new_boss = current_level.spawnBoss();
+            }
 
-        for (i = 0; i < new_obstacles.length; i++) {
-            obstacles.push(new_obstacles[i]);
-            container.addChild(new_obstacles[i]);        
+            for (i = 0; i < new_obstacles.length; i++) {
+                obstacles.push(new_obstacles[i]);
+                container.addChild(new_obstacles[i]);        
+            }
+
+            for (i = 0; i < new_items.length; i++){
+                items.push(new_objects[i]);
+                container.addChild(new_items[i]);
+            }
+
+            for (i = 0; i < new_monsters.length; i++) {
+                monsters.push(new_monsters[i]);
+                container.addChild(new_monsters[i]);
+            }
+
+            if (new_boss) {
+                boss = new_boss;
+                container.addChild(boss);
+            }
         }
 
-        for (i = 0; i < new_items.length; i++){
-            items.push(new_objects[i]);
-            container.addChild(new_items[i]);
-        }
-
-        for (i = 0; i < new_monsters.length; i++) {
-            monsters.push(new_monsters[i]);
-            container.addChild(new_monsters[i]);
-        }
-
-        if (new_boss) {
-            boss = new_boss;
-            container.addChild(boss);
-        }
+        l = container.getNumChildren();
         
         for (i=0; i<l; i++){
             child = container.children[i];
@@ -114,8 +114,10 @@ rince.level = (function(){
             if (child !== player){
                 if (child.hitRadius(player.x, player.y, player.hit) && player.immune == 0){
                     child.hitAction(player, this); 
-                    resetPlayerVerticalMove();    
-                    resetPlayerHorizontalMove();            
+                    if (player.idle > 0) {
+                        resetPlayerVerticalMove();    
+                        resetPlayerHorizontalMove();    
+                    }        
                 }
             }
         }
@@ -164,8 +166,8 @@ rince.level = (function(){
     return {
         initialize: initialize,
         getObjects: getObjects,
-        movePlayerUp: ifNotStopped(movePlayerUp),
-        movePlayerDown: ifNotStopped(movePlayerDown),
+        movePlayerUp: movePlayerUp,
+        movePlayerDown: movePlayerDown,
         movePlayerRight: ifNotStopped(movePlayerRight),
         movePlayerLeft: ifNotStopped(movePlayerLeft),
         resetPlayerHorizontalMove: resetPlayerHorizontalMove,

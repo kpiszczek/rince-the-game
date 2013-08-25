@@ -82,6 +82,48 @@ rince.level1 = (function(){
             probability: 0.25
         });
 
+        image = rince.images["images/cabbage"+cellSize+".png"];
+        obstacle_types.push({
+            name: "cabbage",
+            image: image,
+            h: image.height,
+            w: image.width/2,
+            x: Math.floor(image.width/4),
+            y: -20,
+            hitAction: function(player, level) {
+                level.stop = 2;
+            },
+            probability: 0.15
+        });
+
+        image = rince.images["images/stone"+cellSize+".png"];
+        obstacle_types.push({
+            name: "stone",
+            image: image,
+            h: image.height,
+            w: image.width/2,
+            x: Math.floor(image.width/4),
+            y: -20,
+            hitAction: function(player, level) {
+                level.stop = 2;
+            },
+            probability: 0.15
+        });
+
+        image = rince.images["images/bush"+cellSize+".png"];
+        obstacle_types.push({
+            name: "bush",
+            image: image,
+            h: image.height,
+            w: image.width/2,
+            x: Math.floor(image.width/4),
+            y: -20,
+            hitAction: function(player, level) {
+                level.stop = 2;
+            },
+            probability: 0.15
+        });
+
         image = rince.images["images/hedgehog"+cellSize+".png"];
         monster_types.push({
             name: "hedgehog",
@@ -103,11 +145,9 @@ rince.level1 = (function(){
                 level.stop = fps;
             },
             tickAction: function(){
-
                 if (!level.isStopped()){
                     this.x -= speed;
                 }
-
                 if (this.currentFrame == 23 || this.currentFrame == 47) {
                     this.speed[0] = choose([-1, 1]);
                     this.speed[1] = choose([-1, 1]);
@@ -117,21 +157,75 @@ rince.level1 = (function(){
                     } else {
                         this.gotoAndPlay('move_right');
                     }
-
                 }
-
                 this.x += this.speed[0];
-                this.y += this.speed[1];
+                if (isInside(this.y)) {
+                    this.y += this.speed[1];
+                } else {
+                    this.y += 1;
+                }
             },
             hitArea: function(tX, tY, tHit) {
                 if (tX - tHit > this.x + this.hit) { return; }
                 if (tX + tHit < this.x - this.hit) { return; }
-                if (tY - tHit > this.y + this.hit) { return; }
-                if (tY + tHit < this.y - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit + 40) { return; }
+                if (tY + tHit < this.y - this.hit + 40) { return; }
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
-            probability: 0.3
+            probability: 0.2
+        });
+
+        image = rince.images["images/budger"+cellSize+".png"];
+        monster_types.push({
+            name: "budger",
+            image: image,
+            h: image.height,
+            w: image.width/48,
+            x: Math.floor(image.width/96),
+            y: -20,
+            animName: 'move_left',
+            monsterAnimations: {
+                move_left: [0, 23, 'move_left', 1],
+                move_right: [24, 47, 'move_right', 1]
+            },
+            hitAction: function(player, level) {
+                audio.play("body-fall");
+                player.immune = 2*fps;
+                player.idle = fps;
+                player.gotoAndPlay("fall");
+                level.stop = fps;
+            },
+            tickAction: function(){
+                if (!level.isStopped()){
+                    this.x -= speed;
+                }
+                if (this.currentFrame == 23 || this.currentFrame == 47) {
+                    this.speed[0] = choose([-1, 1]);
+                    this.speed[1] = choose([-1, 1]);
+
+                    if (this.speed[0] < 0){
+                        this.gotoAndPlay('move_left');
+                    } else {
+                        this.gotoAndPlay('move_right');
+                    }
+                }
+                this.x += this.speed[0];
+                if (isInside(this.y)) {
+                    this.y += this.speed[1];
+                } else {
+                    this.y += 1;
+                }
+            },
+            hitArea: function(tX, tY, tHit) {
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit + 20) { return; }
+                if (tY + tHit < this.y - this.hit + 20) { return; }
+                
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
+            },
+            probability: 0.2
         });
 
         function spawnObsatacles(){
