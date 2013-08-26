@@ -4,7 +4,8 @@ rince.screens["game-screen"] = (function(){
         display = rince.display,
         input = rince.input,
         firstRun = true,
-        audio = rince.audio;
+        audio = rince.audio,
+        game = rince.game;
     
     function run(){
         if (firstRun){
@@ -57,6 +58,9 @@ rince.screens["game-screen"] = (function(){
         input.bind("keyup_Down", stopVertical);
         input.bind("keyup_Left", stopHorizontal);
         input.bind("keyup_Right", stopHorizontal);
+        input.bind("keydown_Exit", function(){
+            game.showScreen('main-menu');
+        });
     }
     
     function playGameEvents(events){

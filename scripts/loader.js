@@ -14,7 +14,8 @@ var rince = {
         KEY_DOWN: "Down",
         KEY_LEFT: "Left",
         KEY_RIGHT: "Right",
-        KEY_SPACE: "specialAction"
+        KEY_SPACE: "SpecialAction",
+        KEY_ESC: "Exit"
     }
 };
 
@@ -116,6 +117,7 @@ window.addEventListener("load", function(){
                     "loader!scripts/boss.js",
                     "loader!scripts/display.canvas.js",
                     "loader!scripts/screen.main-menu.js",
+                    "loader!scripts/screen.choose.js",
                     "loader!scripts/screen.game.js"                                     
                 ]
             }

@@ -67,7 +67,7 @@ rince.level = (function(){
         }
         tickCounter += 1;
 
-        if ( this.stop == 0 && player.idle == 0) {
+        if ( this.stop === 0 && player.idle === 0) {
             if (tickCounter % 30 == 0) {
                 new_obstacles = current_level.spawnObstacles();
             } else if (tickCounter % 43 == 0) {

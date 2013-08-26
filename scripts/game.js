@@ -12,7 +12,7 @@ rince.game = (function(){
             dom.removeClass(activeScreen, "active");
         }
         
-        args = Array.prototype.slice.call(arguments,1);
+        args = Array.prototype.slice.call(arguments, 1);
         rince.screens[screenId].run.apply(
             rince.screens[screenId], args
         );
