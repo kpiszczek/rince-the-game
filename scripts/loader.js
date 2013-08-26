@@ -15,7 +15,8 @@ var rince = {
         KEY_LEFT: "Left",
         KEY_RIGHT: "Right",
         KEY_SPACE: "SpecialAction",
-        KEY_ESC: "Exit"
+        KEY_ESC: "Exit",
+        KEY_M: "Mute"
     }
 };
 

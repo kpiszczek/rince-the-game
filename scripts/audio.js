@@ -2,7 +2,8 @@ rince.audio = (function() {
 	var dom = rince.dom,
 		extension,
 		sounds,
-		activeSounds;
+		activeSounds,
+		mute = false;
 
 	function initialize(){
 
@@ -53,9 +54,11 @@ rince.audio = (function() {
 	}
 
 	function play(name) {
-		var audio = getAudioElement(name);
-		audio.play();
-		activeSounds.push(audio);
+		if (!this.mute) {
+			var audio = getAudioElement(name);
+			audio.play();
+			activeSounds.push(audio);
+		}
 	}
 
 	function stop() {
@@ -73,10 +76,27 @@ rince.audio = (function() {
 		}
 	}
 
+	function toggleMute(value) {
+		if (value === undefined) {
+			this.mute = !this.mute;
+		} else {
+			this.mute = value;
+		}
+		if (!this.mute) {
+			stop();
+		}
+	}
+
+	function getMute() {
+		return this.mute;
+	}
+
 	return {
 		initialize: initialize,
 		play: play,
-		stop: stop
+		stop: stop,
+		toggleMute: toggleMute,
+		getMute: getMute
 	};
 
 })();

@@ -10,7 +10,8 @@ rince.input = (function (){
             39: "KEY_RIGHT",
             40: "KEY_DOWN",
             32: "KEY_SPACE",
-            27: "KEY_ESC"
+            27: "KEY_ESC",
+            77: "KEY_M"
         },
         inputHandlers;
     

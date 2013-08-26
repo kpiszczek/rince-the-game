@@ -61,6 +61,10 @@ rince.screens["game-screen"] = (function(){
         input.bind("keydown_Exit", function(){
             game.showScreen('main-menu');
         });
+        input.bind("keydown_Mute", function(){
+            audio.toggleMute();
+        });
+
     }
     
     function playGameEvents(events){

@@ -18,7 +18,8 @@ rince.display = (function(){
         stage, 
         previousCycle,
         speed, 
-        objects;
+        objects,
+        game;
     
     function init(){
         var landscapeElement = $("#game-screen .game-landscape")[0];
@@ -35,7 +36,9 @@ rince.display = (function(){
 
         landscapeElement.appendChild(canvas);           
         
-        stage = new createjs.Stage(canvas)       
+        stage = new createjs.Stage(canvas);
+
+        game = rince.game;      
     }
     
     function reset(callback) {
