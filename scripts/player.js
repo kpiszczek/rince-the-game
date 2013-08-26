@@ -52,7 +52,7 @@ rince.player = (function(){
         this.hit = this.bounds;
 	}
 	
-	Player.prototype.tick = function () {
+	Player.prototype.tick = function (stopped) {
         if (this.idle == 0) {
             if (this.immune > 0) {
                 this.immune -= 1;

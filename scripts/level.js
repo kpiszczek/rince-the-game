@@ -64,11 +64,10 @@ rince.level = (function(){
 
         if (this.stop > 0) {
             this.stop -= 1;
-        } else {
-            tickCounter += 1;
         }
+        tickCounter += 1;
 
-        if (!isStopped()) {
+        if ( this.stop == 0 && player.idle == 0) {
             if (tickCounter % 30 == 0) {
                 new_obstacles = current_level.spawnObstacles();
             } else if (tickCounter % 43 == 0) {
@@ -106,12 +105,11 @@ rince.level = (function(){
             child.tick();
             
             if (child.x < -child.w2){
-
                 container.removeChildAt(i);
                 l -= 1;
             }
 
-            if (child !== player){
+            if (child !== player && tickCounter % 5 == 0) {
                 if (child.hitRadius(player.x, player.y, player.hit) && player.immune == 0){
                     child.hitAction(player, this); 
                     if (player.idle > 0) {

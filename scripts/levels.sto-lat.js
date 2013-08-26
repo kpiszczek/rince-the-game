@@ -91,7 +91,7 @@ rince.level1 = (function(){
             x: Math.floor(image.width/4),
             y: -20,
             hitAction: function(player, level) {
-                level.stop = 2;
+                level.stop = 6;
             },
             probability: 0.15
         });
@@ -105,7 +105,7 @@ rince.level1 = (function(){
             x: Math.floor(image.width/4),
             y: -20,
             hitAction: function(player, level) {
-                level.stop = 2;
+                level.stop = 6;
             },
             probability: 0.15
         });
@@ -119,7 +119,7 @@ rince.level1 = (function(){
             x: Math.floor(image.width/4),
             y: -20,
             hitAction: function(player, level) {
-                level.stop = 2;
+                level.stop = 6;
             },
             probability: 0.15
         });
