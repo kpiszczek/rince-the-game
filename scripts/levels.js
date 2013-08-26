@@ -15,11 +15,10 @@ rince.levels = (function(){
     }
 
     function nextLevel(){
-        console.log("previus level: " + current_level_idx);
         if (current_level_idx < (levels.length - 1)){
             current_level_idx += 1;
         }
-        console.log("next level: " + current_level_idx);
+
         setTimeout(function(){
             rince.level.initialize(function (){
                 rince.display.reset(function(){});
@@ -27,10 +26,19 @@ rince.levels = (function(){
         }, 500);
     }
 
+    function setLevel(id) {
+        if (id < (levels.length+1)) {
+            current_level_idx = id - 1;
+        } else {
+            // do nothing
+        }
+    }
+
 
     return {
         initialize: initialize,
         currentLevel: currentLevel,
-        nextLevel: nextLevel
+        nextLevel: nextLevel,
+        setLevel: setLevel
     }
 })();

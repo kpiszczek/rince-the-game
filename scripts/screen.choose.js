@@ -2,28 +2,28 @@ rince.screens["choose-screen"] = (function() {
     var game = rince.game,
         dom = rince.dom,
         firstRun = true,
-        $ = dom.$;
+        $ = dom.$,
+        levels = rince.levels;
     
-    function setup(getLoadProgress){
-        var scr = $("#level-select")[0];
-        function checkProgress(){
-            var p = getLoadProgress()*100;
-            $(".indicator",scr)[0].style.width = p + "%";
-            if (p == 100){
-                $(".continue",scr)[0].style.display = "block";
-                dom.bind(scr,"click", function(){
-                    rince.game.showScreen("main-menu");
-                });
-            } else {
-               setTimeout(checkProgress, 30); 
+    function setup(){
+        levels.initialize();
+        dom.bind("#level-select ul.menu", "click", function(e){     
+            if (e.target.nodeName.toLowerCase() === "button") {
+                var action = e.target.getAttribute("name");
+                if (action == "level-1") {
+                    levels.setLevel(1);
+                } else if (action == "level-2") {
+                    levels.setLevel(2);
+                }
+                game.showScreen("game-screen");
             }
-        }
-        checkProgress(); 
+            $("#level-select")[0].style.display = "none";
+        });
     }
     
-    function run(getLoadProgress){
+    function run(){
         if (firstRun){
-            setup(getLoadProgress);
+            setup();
             firstRun = false;
         }
     }
