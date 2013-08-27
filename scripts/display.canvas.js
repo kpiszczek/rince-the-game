@@ -75,7 +75,6 @@ rince.display = (function(){
     function addButtons() {
         muteButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 100, 100, function(self) {
             return function() {
-                console.log("mute-button clicked")
                 if (audio.getMute()) {
                     self.sourceRect = new createjs.Rectangle(0,0,self.w,self.h);
                     audio.toggleMute();
@@ -87,8 +86,7 @@ rince.display = (function(){
         });
 
         menuButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 150, 100, function(self) {
-            return function() {
-                reset(function(){});
+            return function() { 
                 game.showScreen('main-menu');
             };
         });
@@ -111,6 +109,12 @@ rince.display = (function(){
         createjs.Ticker.setFPS(rince.settings.fps);
 
         addButtons();
+    }
+
+    function kill(){
+        stage.removeAllChildren();
+        createjs.Ticker.removeAllListeners();
+        stage.update();
     }
     
     function tick(){
@@ -162,5 +166,6 @@ rince.display = (function(){
    return {
        initialize: initialize,
        reset: reset,
+       kill: kill,
    };   
 })();

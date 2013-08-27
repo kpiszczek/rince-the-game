@@ -1,7 +1,8 @@
 rince.screens["main-menu"] = (function(){
     var dom = rince.dom,
         game = rince.game,
-        $ = dom.$;
+        display = rince.display,
+        $ = dom.$,
         firstRun = true;
     
     function setup(){
@@ -10,6 +11,9 @@ rince.screens["main-menu"] = (function(){
                 var action = e.target.getAttribute("name");
                 if (action == "choose-screen") {
                     $("#level-select")[0].style.display = "block";
+                }
+                if (action == "game-screen") {
+                    rince.levels.setLevel(1);
                 }
                 game.showScreen(action);
             }
@@ -20,6 +24,8 @@ rince.screens["main-menu"] = (function(){
         if (firstRun){
             setup();
             firstRun = false;
+        } else {
+            display.kill();
         }
     }
     
