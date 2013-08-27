@@ -52,7 +52,8 @@ rince.game = (function(){
     
     return {
         showScreen: showScreen,
-        setup: setup
+        setup: setup,
+        
     };
     
 })();

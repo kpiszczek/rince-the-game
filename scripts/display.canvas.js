@@ -19,7 +19,10 @@ rince.display = (function(){
         previousCycle,
         speed, 
         objects,
-        game;
+        game,
+        muteButton,
+        menuButton,
+        audio;
     
     function init(){
         var landscapeElement = $("#game-screen .game-landscape")[0];
@@ -38,7 +41,8 @@ rince.display = (function(){
         
         stage = new createjs.Stage(canvas);
 
-        game = rince.game;      
+        game = rince.game; 
+        audio = rince.audio;     
     }
     
     function reset(callback) {
@@ -65,7 +69,32 @@ rince.display = (function(){
         skyBitmap2.x = canvas.width - landscapePos;
         
         stage.addChild(skyBitmap1);
-        stage.addChild(skyBitmap2);      
+        stage.addChild(skyBitmap2);  
+    }
+
+    function addButtons() {
+        muteButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 100, 100, function(self) {
+            return function() {
+                console.log("mute-button clicked")
+                if (audio.getMute()) {
+                    self.sourceRect = new createjs.Rectangle(0,0,self.w,self.h);
+                    audio.toggleMute();
+                } else {
+                    self.sourceRect = new createjs.Rectangle(self.w,0,self.w,self.h);
+                    audio.toggleMute();
+                }
+            };
+        });
+
+        menuButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 150, 100, function(self) {
+            return function() {
+                reset(function(){});
+                game.showScreen('main-menu');
+            };
+        });
+
+        stage.addChild(muteButton);
+        stage.addChild(menuButton);
     }
     
     function setup(){
@@ -80,6 +109,8 @@ rince.display = (function(){
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
         createjs.Ticker.setFPS(rince.settings.fps);
+
+        addButtons();
     }
     
     function tick(){
@@ -118,7 +149,7 @@ rince.display = (function(){
         
         skyBitmap1.x = 0;
         skyBitmap2.x = intersection;
-    }    
+    }   
     
     function initialize(callback){
         if (firstRun){

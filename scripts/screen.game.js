@@ -59,6 +59,7 @@ rince.screens["game-screen"] = (function(){
         input.bind("keyup_Left", stopHorizontal);
         input.bind("keyup_Right", stopHorizontal);
         input.bind("keydown_Exit", function(){
+            display.reset(function(){});
             game.showScreen('main-menu');
         });
         input.bind("keydown_Mute", function(){
