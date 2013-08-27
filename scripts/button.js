@@ -16,8 +16,28 @@ rince.button = (function(){
 	    this.x = x;
 	    this.y = y;
 	    this.alwaysOnTop = true;
+	    this.state = 'off';
 
 	    this.addEventListener('click', clickAction(this));
+	}	
+
+	Button.prototype.toggle = function() {
+		console.log
+		if (this.state === 'off') {
+			this.switchOn();
+		} else if (this.state === 'on') {
+			this.switchOff();
+		}
+	}
+
+	Button.prototype.switchOn = function() {
+		this.state = 'on';
+		this.sourceRect = new createjs.Rectangle(this.w, 0, this.w, this.h);
+	}
+
+	Button.prototype.switchOff = function() {
+		this.state = 'off';
+		this.sourceRect = new createjs.Rectangle(0, 0, this.w, this.h);
 	}
 
 	return {

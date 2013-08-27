@@ -75,14 +75,9 @@ rince.display = (function(){
     function addButtons() {
         muteButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 100, 100, function(self) {
             return function() {
-                if (audio.getMute()) {
-                    self.sourceRect = new createjs.Rectangle(0,0,self.w,self.h);
-                    audio.toggleMute();
-                } else {
-                    self.sourceRect = new createjs.Rectangle(self.w,0,self.w,self.h);
-                    audio.toggleMute();
-                }
-            };
+                audio.toggleMute();
+                self.toggle();
+            }
         });
 
         menuButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 150, 100, function(self) {
@@ -119,6 +114,7 @@ rince.display = (function(){
     
     function tick(){
         drawLandscape();
+        updateButtons();
         level.tick();      
         stage.update();
     }
@@ -153,7 +149,15 @@ rince.display = (function(){
         
         skyBitmap1.x = 0;
         skyBitmap2.x = intersection;
-    }   
+    } 
+
+    function updateButtons() {
+        if (audio.getMute() === true && muteButton.state === 'off') {
+            muteButton.switchOn();
+        } else if (audio.getMute()  === false && muteButton.state === 'on') {
+            muteButton.switchOff();
+        }
+    }  
     
     function initialize(callback){
         if (firstRun){
