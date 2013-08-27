@@ -16,9 +16,11 @@ rince.level = (function(){
         container,
         Obstacle,
         boss,
-        current_level;
+        current_level,
+        Button;
 
     function initialize(callback){
+        Button = rince.button.Button;
         settings = rince.settings;
         numEnemyTypes = settings.numEnemyTypes;
         baseScore = settings.baseScore;
@@ -46,7 +48,11 @@ rince.level = (function(){
     }
     
     function compareByY(o1, o2, options){
-        if (o1.y > o2.y) { 
+        if (o1 instanceof Button) {
+            return 1
+        } else if (o2 instanceof Button) {
+            return 0;
+        } else if (o1.y > o2.y) { 
             return 1;
         } else {
             return 0;
