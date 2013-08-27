@@ -14,6 +14,10 @@ var rince = {
         KEY_DOWN: "Down",
         KEY_LEFT: "Left",
         KEY_RIGHT: "Right",
+        KEY_W: "Up",
+        KEY_A: "Left",
+        KEY_S: "Down",
+        KEY_D: "Right",
         KEY_SPACE: "SpecialAction",
         KEY_ESC: "Exit",
         KEY_M: "Mute"
