@@ -48,9 +48,9 @@ rince.level = (function(){
     }
     
     function compareByY(o1, o2, options){
-        if (o1 instanceof Button) {
+        if (o1.alwaysOnTop) {
             return 1
-        } else if (o2 instanceof Button) {
+        } else if (o2.alwaysOnTop) {
             return 0;
         } else if (o1.y > o2.y) { 
             return 1;

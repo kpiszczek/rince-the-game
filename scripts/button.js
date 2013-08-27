@@ -15,6 +15,7 @@ rince.button = (function(){
 
 	    this.x = x;
 	    this.y = y;
+	    this.alwaysOnTop = true;
 
 	    this.addEventListener('click', clickAction(this));
 	}
