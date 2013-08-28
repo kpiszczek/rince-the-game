@@ -806,6 +806,8 @@ window.Modernizr = (function( window, document, undefined ) {
 
                                                     (enableClasses ? ' js ' + classes.join(' ') : '');
 
+    Modernizr.standalone = true;
+
     return Modernizr;
 
 })(this, this.document);

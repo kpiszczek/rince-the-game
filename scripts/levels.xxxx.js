@@ -37,22 +37,25 @@ rince.level2 = (function(){
             h: image.height,
             w: image.width/30,
             x: Math.floor(image.width/60),
-            y: 95,
+            y: image.height/2,
             animName: 'punch',
             monsterAnimations: {
-                move_left: [0, 29, 'punch', 2]
+                punch: [0, 29, 'punch', 2]
             },
             hitAction: function(player, level) {
-                audio.play("body-fall");
-                player.immune = 2*fps;
-                player.idle = fps;
-                player.gotoAndPlay("fall");
-                level.stop = fps;
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
             },
             tickAction: function(){
                 if (!level.isStopped()){
                     this.x -= speed;
                 }
+                this.x -= 2;
             },
             hitArea: function(tX, tY, tHit) {
                 if (tX - tHit > this.x + this.hit) { return; }
@@ -65,24 +68,26 @@ rince.level2 = (function(){
             probability: 0.2
         });
 
-        image = rince.images["images/lizard"+cellSize+".png"];
+        image = rince.images["images/lizzard"+cellSize+".png"];
         monster_types.push({
-            name: "lizard",
+            name: "lizzard",
             image: image,
             h: image.height,
-            w: image.width/24,
-            x: Math.floor(image.width/48),
-            y: -20,
-            animName: 'punch',
+            w: image.width/100,
+            x: Math.floor(image.width/200),
+            y: -3,
+            animName: 'lick',
             monsterAnimations: {
-                move_left: [0, 23, 'punch', 1]
+                lick: [0, 99, 'lick', 1]
             },
             hitAction: function(player, level) {
-                audio.play("body-fall");
-                player.immune = 2*fps;
-                player.idle = fps;
-                player.gotoAndPlay("fall");
-                level.stop = fps;
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
             },
             tickAction: function(){
                 if (!level.isStopped()){
@@ -90,16 +95,55 @@ rince.level2 = (function(){
                 }
             },
             hitArea: function(tX, tY, tHit) {
-                if (tX - tHit > this.x + this.hit - 80) { return; }
-                if (tX + tHit < this.x - this.hit - 80) { return; }
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
                 if (tY - tHit > this.y + this.hit) { return; }
                 if (tY + tHit < this.y - this.hit) { return; }
 
-                if (this.currentFrame > 12 && this.currentFrame < 18) {
+                if (this.currentFrame > 69 && this.currentFrame < 81) {
                     return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
                 } else {
                     return false;
                 }
+            },
+            probability: 0.2
+        });
+
+        image = rince.images["images/dropbear"+cellSize+".png"];
+        monster_types.push({
+            name: "dropbear",
+            image: image,
+            h: image.height,
+            w: image.width/24,
+            x: Math.floor(image.width/48),
+            y: 195,
+            animName: 'hidden',
+            monsterAnimations: {
+                hidden: [0, 0, 'hidden', 1],
+                drop: [1, 23, 'hidden', 2]
+            },
+            hitAction: function(player, level) {
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    this.gotoAndPlay('drop');
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
+            },
+            tickAction: function(){
+                if (!level.isStopped()){
+                    this.x -= speed;
+                }
+            },
+            hitArea: function(tX, tY, tHit) {
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
+
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
             probability: 0.2
         });
@@ -111,18 +155,20 @@ rince.level2 = (function(){
             h: image.height,
             w: image.width/48,
             x: Math.floor(image.width/96),
-            y: -20,
+            y: 0,
             animName: 'move_left',
             monsterAnimations: {
                 move_left: [0, 23, 'move_left', 1],
                 move_right: [24, 47, 'move_right', 1]
             },
             hitAction: function(player, level) {
-                audio.play("body-fall");
-                player.immune = 2*fps;
-                player.idle = fps;
-                player.gotoAndPlay("fall");
-                level.stop = fps;
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
             },
             tickAction: function(){
                 if (!level.isStopped()){

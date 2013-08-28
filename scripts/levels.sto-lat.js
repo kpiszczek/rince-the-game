@@ -73,13 +73,9 @@ rince.level1 = (function(){
             x: Math.floor(image.width/4),
             y: 195,
             hitAction: function(player, level) {
-                audio.play("body-fall");
-                player.immune = 2*fps;
-                player.idle = fps;
-                player.gotoAndPlay("fall");
-                level.stop = fps;
+                level.stop = 6;
             },
-            probability: 0.25
+            probability: 0.2
         });
 
         image = rince.images["images/cabbage"+cellSize+".png"];
@@ -89,11 +85,11 @@ rince.level1 = (function(){
             h: image.height,
             w: image.width/2,
             x: Math.floor(image.width/4),
-            y: -20,
+            y: -25,
             hitAction: function(player, level) {
                 level.stop = 6;
             },
-            probability: 0.15
+            probability: 0.4
         });
 
         image = rince.images["images/stone"+cellSize+".png"];
@@ -103,11 +99,11 @@ rince.level1 = (function(){
             h: image.height,
             w: image.width/2,
             x: Math.floor(image.width/4),
-            y: -20,
+            y: -25,
             hitAction: function(player, level) {
                 level.stop = 6;
             },
-            probability: 0.15
+            probability: 0.05
         });
 
         image = rince.images["images/bush"+cellSize+".png"];
@@ -117,11 +113,11 @@ rince.level1 = (function(){
             h: image.height,
             w: image.width/2,
             x: Math.floor(image.width/4),
-            y: -20,
+            y: -25,
             hitAction: function(player, level) {
                 level.stop = 6;
             },
-            probability: 0.15
+            probability: 0.1
         });
 
         image = rince.images["images/hedgehog"+cellSize+".png"];
@@ -138,11 +134,13 @@ rince.level1 = (function(){
                 move_right: [24, 47, 'move_right', 1]
             },
             hitAction: function(player, level) {
-                audio.play("body-fall");
-                player.immune = 2*fps;
-                player.idle = fps;
-                player.gotoAndPlay("fall");
-                level.stop = fps;
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
             },
             tickAction: function(){
                 if (!level.isStopped()){
@@ -190,11 +188,13 @@ rince.level1 = (function(){
                 move_right: [24, 47, 'move_right', 1]
             },
             hitAction: function(player, level) {
-                audio.play("body-fall");
-                player.immune = 2*fps;
-                player.idle = fps;
-                player.gotoAndPlay("fall");
-                level.stop = fps;
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
             },
             tickAction: function(){
                 if (!level.isStopped()){

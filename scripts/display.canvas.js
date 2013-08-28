@@ -73,17 +73,12 @@ rince.display = (function(){
     }
 
     function addButtons() {
-        muteButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 100, 100, function(self) {
-            return function() {
-                audio.toggleMute();
-                self.toggle();
-            }
+        muteButton = new rince.buttons.ToggleButton(rince.images['images/checkboxen.jpg'], 34, 29, 100, 100, function(){
+            audio.toggleMute();
         });
 
-        menuButton = new rince.button.Button(rince.images['images/checkboxen.jpg'], 34, 29, 150, 100, function(self) {
-            return function() { 
-                game.showScreen('main-menu');
-            };
+        menuButton = new rince.buttons.Button(rince.images['images/checkboxen.jpg'], 150, 100, function() {
+            game.showScreen('main-menu');
         });
 
         stage.addChild(muteButton);

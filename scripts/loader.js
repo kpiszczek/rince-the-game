@@ -24,7 +24,6 @@ var rince = {
     }
 };
 
-Modernizr.standalone = true;
 
 window.addEventListener("load", function(){
     
@@ -107,8 +106,9 @@ window.addEventListener("load", function(){
                     "loader!images/stone" + rince.settings.cellSize + ".png",
                     "loader!images/bush" + rince.settings.cellSize + ".png",
                     "loader!images/cangaroo" + rince.settings.cellSize + ".png",
-                    "loader!images/lizard" + rince.settings.cellSize + ".png",
+                    "loader!images/lizzard" + rince.settings.cellSize + ".png",
                     "loader!images/sheep" + rince.settings.cellSize + ".png",
+                    "loader!images/dropbear" + rince.settings.cellSize + ".png",
                     "loader!images/checkboxen.jpg",
                     "loader!scripts/utils.js",
                     "loader!scripts/audio.js",         
@@ -116,7 +116,7 @@ window.addEventListener("load", function(){
                     "loader!scripts/button.js",
                     "loader!scripts/levels.sto-lat.js",
                     "loader!scripts/levels.xxxx.js",
-                    "loader!scripts/levels.js",
+                    "loader!scripts/levels.manager.js",
                     "loader!scripts/level.js",
                     "loader!scripts/player.js",
                     "loader!scripts/obstacle.js",
@@ -125,6 +125,7 @@ window.addEventListener("load", function(){
                     "loader!scripts/display.canvas.js",
                     "loader!scripts/screen.main-menu.js",
                     "loader!scripts/screen.choose.js",
+                    "loader!scripts/screen.credits.js",
                     "loader!scripts/screen.game.js"                                     
                 ]
             }

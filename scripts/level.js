@@ -16,11 +16,9 @@ rince.level = (function(){
         container,
         Obstacle,
         boss,
-        current_level,
-        Button;
+        current_level;
 
     function initialize(callback){
-        Button = rince.button.Button;
         settings = rince.settings;
         numEnemyTypes = settings.numEnemyTypes;
         baseScore = settings.baseScore;
@@ -74,11 +72,11 @@ rince.level = (function(){
         tickCounter += 1;
 
         if ( this.stop === 0 && player.idle === 0) {
-            if (tickCounter % 30 == 0) {
+            if (tickCounter % 30 === 0) {
                 new_obstacles = current_level.spawnObstacles();
-            } else if (tickCounter % 43 == 0) {
+            } else if (tickCounter % 41 === 0) {
                 new_monsters = current_level.spawnMonsters();
-            } else if (tickCounter % 503 == 0) {
+            } else if (tickCounter % 577 === 0) {
                 new_boss = current_level.spawnBoss();
             }
 
@@ -115,8 +113,8 @@ rince.level = (function(){
                 l -= 1;
             }
 
-            if (child !== player && tickCounter % 5 == 0) {
-                if (child.hitRadius(player.x, player.y, player.hit) && player.immune == 0){
+            if (child !== player) {
+                if (child.hitRadius(player.x, player.y, player.hit)){
                     child.hitAction(player, this); 
                     if (player.idle > 0) {
                         resetPlayerVerticalMove();    
