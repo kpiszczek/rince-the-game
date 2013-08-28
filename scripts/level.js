@@ -74,30 +74,22 @@ rince.level = (function(){
         if ( this.stop === 0 && player.idle === 0) {
             if (tickCounter % 30 === 0) {
                 new_obstacles = current_level.spawnObstacles();
+                for (i = 0; i < new_obstacles.length; i++) {
+                    obstacles.push(new_obstacles[i]);
+                    container.addChild(new_obstacles[i]);   
+                }     
             } else if (tickCounter % 41 === 0) {
                 new_monsters = current_level.spawnMonsters();
+                for (i = 0; i < new_monsters.length; i++) {
+                    monsters.push(new_monsters[i]);
+                    container.addChild(new_monsters[i]);
+                }
             } else if (tickCounter % 577 === 0) {
                 new_boss = current_level.spawnBoss();
-            }
-
-            for (i = 0; i < new_obstacles.length; i++) {
-                obstacles.push(new_obstacles[i]);
-                container.addChild(new_obstacles[i]);        
-            }
-
-            for (i = 0; i < new_items.length; i++){
-                items.push(new_objects[i]);
-                container.addChild(new_items[i]);
-            }
-
-            for (i = 0; i < new_monsters.length; i++) {
-                monsters.push(new_monsters[i]);
-                container.addChild(new_monsters[i]);
-            }
-
-            if (new_boss) {
-                boss = new_boss;
-                container.addChild(boss);
+                if (new_boss) {
+                    boss = new_boss;
+                    container.addChild(boss);
+                }
             }
         }
 

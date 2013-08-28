@@ -228,6 +228,84 @@ rince.level1 = (function(){
             probability: 0.2
         });
 
+        image = rince.images["images/heroin"+cellSize+".png"];
+        monster_types.push({
+            name: "heroin",
+            image: image,
+            h: image.height,
+            w: image.width/36,
+            x: Math.floor(image.width/72),
+            y: image.height/2,
+            animName: 'stab',
+            monsterAnimations: {
+                stab: [0, 35, 'stab', 2]
+            },
+            hitAction: function(player, level) {
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
+            },
+            tickAction: function(){
+                if (!level.isStopped()){
+                    this.x -= speed;
+                }
+                this.x -= 2;
+            },
+            hitArea: function(tX, tY, tHit) {
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
+                
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
+            },
+            probability: 0.2
+        });
+
+        image = rince.images["images/errol"+cellSize+".png"];
+        monster_types.push({
+            name: "errol",
+            image: image,
+            h: image.height,
+            w: image.width/36,
+            x: Math.floor(image.width/72),
+            y: 5,
+            animName: 'standby',
+            monsterAnimations: {
+                standby: [35, 35, 'standby', 1],
+                breathe: [0, 35, 'standby', 1],
+
+            },
+            hitAction: function(player, level) {
+                if (player.immune === 0) {
+                    audio.play("body-fall");
+                    this.gotoAndPlay('breathe');
+                    player.immune = 2*fps;
+                    player.idle = fps;
+                    player.gotoAndPlay("fall");
+                    level.stop = fps;
+                }
+            },
+            tickAction: function(){
+                if (!level.isStopped()){
+                    this.x -= speed;
+                }
+            },
+            hitArea: function(tX, tY, tHit) {
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
+                
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
+            },
+            probability: 0.2
+        });
+
         function spawnObsatacles(){
             var obstacles = [],
                 obstacle,
