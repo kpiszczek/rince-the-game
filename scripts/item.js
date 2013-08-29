@@ -1,36 +1,55 @@
 rince.item = (function(){
-	function Item(itemName, imgItem, x, y, hitAction){
-		this.initialize(itemName, imgItem, x, y, hitAction);
+	function Item(itemName, imgItem, w, h, x, y, hitAction){
+		this.initialize(itemName, imgItem, w, h, x, y, hitAction);
 	}
-	Item.prototype = new createjs.Bitmap();
+	Item.prototype = new createjs.BitmapAnimation();
 	
 	Item.prototype.bounds = 0;
 	Item.prototype.hit = 0;
 	
-	Item.prototype.Bitmap_initialize = Item.prototype.initialize;
+	Item.prototype.BitmapAnimation_initialize = Item.prototype.initialize;
+
+	var cols = rince.settings.cols;
+	var cellSize = rince.settings.cellSize;
 	
 	var frameSize;
 	var speed = rince.settings.speed;
-	
-	Item.prototype.initialize = function (itemName, imgItem, x, y, hitAction) {
-		this.name = itemName;
-        this.image = imgItem;
+
+	var level;
+
+	Item.prototype.initialize = function (itemName, imgItem, w, h, x, y, hitAction) {
+        var localSpriteSheet = new createjs.SpriteSheet({
+            images: [imgItem], //image to use
+            frames: {width: w, height: h, regX: x, regY: y},
+            animations: {
+                init: {
+                	frames: [0],
+                	next: 'init'
+                }
+            }
+        });
+
+        this.taken = false;
 
         this.hitAction = hitAction;
         
-        frameSize = this.image.width;
+        this.BitmapAnimation_initialize(localSpriteSheet);
+        
+        frameSize = this.spriteSheet.getFrame(0).rect.width;
+        level = rince.level;
+        
+        this.gotoAndPlay('init');
+        
+        this.name = itemName;
         
         // frame width / 2
-        this.w2 = this.image.width/2;
-
-        this.regX = x;
-        this.regY = y;
+        this.w2 = w/2;
         
-        this.x = rince.settings.cols * rince.settings.cellSize + this.w2;
+        this.x = cols * cellSize + this.w2;
 	}
 	
 	Item.prototype.tick = function(){
-		if (!rince.level.isStopped()){
+		if (!level.isStopped()){
 			this.x -= speed;
 		}
 	}

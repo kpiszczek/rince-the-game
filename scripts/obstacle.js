@@ -8,10 +8,15 @@ rince.obstacle = (function(){
 	Obstacle.prototype.hit = 0;
 	
 	Obstacle.prototype.BitmapAnimation_initialize = Obstacle.prototype.initialize;
+
+	var cols = rince.settings.cols;
+	var cellSize = rince.settings.cellSize;
 	
 	var frameSize;
 	var speed = rince.settings.speed;
-	
+
+	var level;
+
 	Obstacle.prototype.initialize = function (obstacleName, imgObstacle, w, h, x, y, hitAction) {
         var localSpriteSheet = new createjs.SpriteSheet({
             images: [imgObstacle], //image to use
@@ -33,6 +38,7 @@ rince.obstacle = (function(){
         this.BitmapAnimation_initialize(localSpriteSheet);
         
         frameSize = this.spriteSheet.getFrame(0).rect.width;
+        level = rince.level;
         
         (Math.random() > 0.5) ? this.gotoAndPlay('left') : this.gotoAndPlay('right');
         
@@ -41,11 +47,11 @@ rince.obstacle = (function(){
         // frame width / 2
         this.w2 = w/2;
         
-        this.x = rince.settings.cols * rince.settings.cellSize + this.w2;
+        this.x = cols * cellSize + this.w2;
 	}
 	
 	Obstacle.prototype.tick = function(){
-		if (!rince.level.isStopped()){
+		if (!level.isStopped()){
 			this.x -= speed;
 		}
 	}

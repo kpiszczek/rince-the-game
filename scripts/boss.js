@@ -10,6 +10,9 @@ rince.boss = (function(){
 	Boss.prototype.hit = 0;
 	
 	Boss.prototype.BitmapAnimation_initialize = Boss.prototype.initialize;
+
+	var cols = rince.settings.cols;
+	var cellSize = rince.settings.cellSize;
 	
 	var frameSize;
 	var speed = rince.settings.speed;
@@ -34,7 +37,7 @@ rince.boss = (function(){
         // frame width / 2
         this.w2 = w/2;
         
-        this.x = rince.settings.cols * rince.settings.cellSize + this.w2;
+        this.x = cols * cellSize + this.w2;
 
         this.tick = tickAction;
 

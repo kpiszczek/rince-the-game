@@ -26,104 +26,8 @@ rince.level1 = (function(){
         Level = rince.level_prototype.Level;
 	}
 
-	function createLevel() {
-        var sto_lat = new Level(),
-            image;
-
-        sto_lat.name = "Sto Lat";
-        sto_lat.needed_potatoes = 10;
-
-        sto_lat.landscape = rince.images["images/landscape"+cellSize+".png"];
-        sto_lat.sky = rince.images["images/clouds"+cellSize+".png"];
-
-        image = rince.images["images/2flowersprite"+cellSize+".png"];
-        sto_lat.boss = {
-            name: "Twoflower",
-            image: image,
-            w: image.width/24,
-            h: image.height,
-            x: Math.floor(image.width/48),
-            y: image.height/2,
-            animName: "photo",
-            bossAnimations: {
-                photo: [0, 23, "photo", 2]
-            },
-            hitAction: function(player, level){
-                player.immune = 2*fps;
-                player.idle = fps;
-                level.stop = fps;
-            	rince.levels.nextLevel();
-            },
-            tickAction: function() {
-                if (!level.isStopped()){
-                    this.x -= speed;
-                }
-            },
-            hitArea: function(tX, tY, tHit) {
-            	if (tX - tHit > this.x + this.hit) { return; }
-		        if (tX + tHit < this.x - this.hit) { return; }
-		        if (tY - tHit > this.y + this.hit) { return; }
-		        if (tY + tHit < this.y - this.hit) { return; }
-		        
-		        return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
-            }
-        }
-
-        image = rince.images["images/tree"+cellSize+".png"];
-        sto_lat.obstacle_types.push({
-            name: "tree",
-            image: image,
-            h: image.height,
-            w: image.width/2,
-            x: Math.floor(image.width/4),
-            y: 195,
-            hitAction: function(player, level) {
-                level.stop = 6;
-            },
-            probability: 0.2
-        });
-
-        image = rince.images["images/cabbage"+cellSize+".png"];
-        sto_lat.obstacle_types.push({
-            name: "cabbage",
-            image: image,
-            h: image.height,
-            w: image.width/2,
-            x: Math.floor(image.width/4),
-            y: -25,
-            hitAction: function(player, level) {
-                level.stop = 6;
-            },
-            probability: 0.4
-        });
-
-        image = rince.images["images/stone"+cellSize+".png"];
-        sto_lat.obstacle_types.push({
-            name: "stone",
-            image: image,
-            h: image.height,
-            w: image.width/2,
-            x: Math.floor(image.width/4),
-            y: -25,
-            hitAction: function(player, level) {
-                level.stop = 6;
-            },
-            probability: 0.05
-        });
-
-        image = rince.images["images/bush"+cellSize+".png"];
-        sto_lat.obstacle_types.push({
-            name: "bush",
-            image: image,
-            h: image.height,
-            w: image.width/2,
-            x: Math.floor(image.width/4),
-            y: -25,
-            hitAction: function(player, level) {
-                level.stop = 6;
-            },
-            probability: 0.1
-        });
+    function addMonsters(sto_lat) {
+        var image;
 
         image = rince.images["images/hedgehog"+cellSize+".png"];
         sto_lat.monster_types.push({
@@ -310,18 +214,138 @@ rince.level1 = (function(){
             },
             probability: 0.05
         });
+    }
+
+    function addObstacles(sto_lat) {
+        var image; 
+
+        image = rince.images["images/tree"+cellSize+".png"];
+        sto_lat.obstacle_types.push({
+            name: "tree",
+            image: image,
+            h: image.height,
+            w: image.width/2,
+            x: Math.floor(image.width/4),
+            y: 195,
+            hitAction: function(player, level) {
+                level.stop = 6;
+            },
+            probability: 0.2
+        });
+
+        image = rince.images["images/cabbage"+cellSize+".png"];
+        sto_lat.obstacle_types.push({
+            name: "cabbage",
+            image: image,
+            h: image.height,
+            w: image.width/2,
+            x: Math.floor(image.width/4),
+            y: -25,
+            hitAction: function(player, level) {
+                level.stop = 6;
+            },
+            probability: 0.4
+        });
+
+        image = rince.images["images/stone"+cellSize+".png"];
+        sto_lat.obstacle_types.push({
+            name: "stone",
+            image: image,
+            h: image.height,
+            w: image.width/2,
+            x: Math.floor(image.width/4),
+            y: -25,
+            hitAction: function(player, level) {
+                level.stop = 6;
+            },
+            probability: 0.05
+        });
+
+        image = rince.images["images/bush"+cellSize+".png"];
+        sto_lat.obstacle_types.push({
+            name: "bush",
+            image: image,
+            h: image.height,
+            w: image.width/2,
+            x: Math.floor(image.width/4),
+            y: -25,
+            hitAction: function(player, level) {
+                level.stop = 6;
+            },
+            probability: 0.1
+        });
+    }
+
+    function addBoss(sto_lat) {
+        var image = rince.images["images/2flowersprite"+cellSize+".png"];
+        sto_lat.boss = {
+            name: "Twoflower",
+            image: image,
+            w: image.width/24,
+            h: image.height,
+            x: Math.floor(image.width/48),
+            y: image.height/2,
+            animName: "photo",
+            bossAnimations: {
+                photo: [0, 23, "photo", 2]
+            },
+            hitAction: function(player, level){
+                player.immune = 2*fps;
+                player.idle = fps;
+                level.stop = fps;
+                rince.levels.nextLevel();
+            },
+            tickAction: function() {
+                if (!level.isStopped()){
+                    this.x -= speed;
+                }
+            },
+            hitArea: function(tX, tY, tHit) {
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
+                
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
+            }
+        }
+    }
+
+    function addItems(sto_lat) {
+        var image;
 
         image = rince.images["images/potato"+cellSize+".png"];
         sto_lat.item_types.push({
             name: "potato",
             image: image,
             x: Math.floor(image.width/2),
-            y: -10,
+            y: -7,
+            h: image.height,
+            w: image.width,
             hitAction: function(player, level) {
-                player.items[this.name] += 1;
+                if (!this.taken) {
+                    player.items[this.name] += 1;
+                    this.visible = false;
+                    this.taken = true;
+                }
             },
             probability: 0.25
         });
+    }
+
+	function createLevel() {
+        var sto_lat = new Level();
+
+        sto_lat.name = "Sto Lat";
+        sto_lat.needed_potatoes = 10;
+
+        sto_lat.landscape = rince.images["images/landscape"+cellSize+".png"];
+        sto_lat.sky = rince.images["images/clouds"+cellSize+".png"];
+
+        addMonsters(sto_lat);
+        addObstacles(sto_lat);
+        addBoss(sto_lat);
+        addItems(sto_lat);
 
         return sto_lat;
     }

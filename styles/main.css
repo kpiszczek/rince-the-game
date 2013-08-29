@@ -147,6 +147,8 @@ ul.menu li button:active{
 	top: -350px;
 	left: 10px;
 	background-image: url(../images/menu30.png);
+	border-radius: 100%;
+	box-shadow:0.15em 0.15em 0.2em #000;
 }
 
 #back-button-levels {
@@ -156,6 +158,8 @@ ul.menu li button:active{
 	top: -202px;
 	left: 10px;
 	background-image: url(../images/menu30.png);
+	border-radius: 100%;
+	box-shadow:0.15em 0.15em 0.2em #000;
 }
 
 #back-button-levels:hover, #back-button-credits:hover {

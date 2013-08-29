@@ -8,6 +8,9 @@ rince.monster = (function(){
 	Monster.prototype.hit = 0;
 	Monster.prototype.BitmapAnimation_initialize = Monster.prototype.initialize;
 
+	var cols = rince.settings.cols;
+	var cellSize = rince.settings.cellSize;
+
 	var frameSize;
 
 	Monster.prototype.initailize = function (monsterName, monsterSpriteSheet, w, h, x, y, animName, monsterAnimations, hitAction, tickAction, hitArea){
@@ -32,7 +35,7 @@ rince.monster = (function(){
         // frame width / 2
         this.w2 = w/2;
         
-        this.x = rince.settings.cols * rince.settings.cellSize + this.w2;
+        this.x = cols * cellSize + this.w2;
 
         this.tick = tickAction;
 
