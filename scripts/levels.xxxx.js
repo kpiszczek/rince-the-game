@@ -236,7 +236,7 @@ rince.level2 = (function(){
             probability: 0.2
         });
 
-        function spawnObsatacles(){
+        function spawnObstacles(){
             var obstacles = [],
                 obstacle,
                 o;
@@ -288,7 +288,7 @@ rince.level2 = (function(){
             sky: sky,
             obstacle_types: obstacle_types,
             item_types: item_types,
-            spawnObstacles: spawnObsatacles,
+            spawnObstacles: spawnObstacles,
             spawnItems: spawnItems,
             spawnMonsters: spawnMonsters,
             spawnBoss: spawnBoss,

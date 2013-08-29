@@ -1,4 +1,4 @@
-rince.buttons = (function(){
+rince.buttons = (function() {
 	function ToggleButton(image, w, h, x, y, clickHandler){
 		this.initialize(image, w, h, x, y, clickHandler);
 	}

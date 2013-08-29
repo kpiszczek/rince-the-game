@@ -5,6 +5,7 @@ rince.level1 = (function(){
 		Boss,
 		Obstacle,
         Monster,
+        Item,
 		rows,
         audio,
         fps,
@@ -14,6 +15,7 @@ rince.level1 = (function(){
 		cellSize = rince.settings.cellSize;
 		Obstacle = rince.obstacle.Obstacle;
         Monster = rince.monster.Monster;
+        Item = rince.item.Item;
         Boss = rince.boss.Boss;
         rows = rince.settings.rows;
         speed = rince.settings.speed;
@@ -308,7 +310,19 @@ rince.level1 = (function(){
             probability: 0.05
         });
 
-        function spawnObsatacles(){
+        image = rince.images["images/potato"+cellSize+".png"];
+        item_types.push({
+            name: "potato",
+            image: image,
+            x: Math.floor(image.width/2),
+            y: -10,
+            hitAction: function(player, level) {
+                player.items[this.name] += 1;
+            },
+            probability: 0.25
+        });
+
+        function spawnObstacles(){
             var obstacles = [],
                 obstacle,
                 o;
@@ -325,7 +339,18 @@ rince.level1 = (function(){
         }
 
         function spawnItems(){
-            var items = [];
+            var items = [],
+                item,
+                i;
+
+            for (var j = 0; j < item_types.length; j++){
+                i = item_types[j];
+                if (i.probability > Math.random()){
+                    item = new Item(i.name, i.image, i.x, i.y, i.hitAction);
+                    items.push(item);
+                    item.y = Math.floor(Math.random()*(0.75*rows*cellSize - (i.h - i.y)) + 0.25*rows*cellSize);
+                }
+            }
             return items;
         }
 
@@ -360,7 +385,7 @@ rince.level1 = (function(){
             sky: sky,
             obstacle_types: obstacle_types,
             item_types: item_types,
-            spawnObstacles: spawnObsatacles,
+            spawnObstacles: spawnObstacles,
             spawnItems: spawnItems,
             spawnMonsters: spawnMonsters,
             spawnBoss: spawnBoss,
