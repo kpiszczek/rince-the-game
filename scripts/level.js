@@ -2,6 +2,7 @@ rince.level = (function(){
     var stop = 0,
         tickCounter = 0,
         obstacle_types = [],
+        item_types = [],
         obstacles = [],
         items = [],
         monsters = [],
@@ -31,12 +32,17 @@ rince.level = (function(){
                                          cols*cellSize, rows*cellSize);
                                         
         current_level = rince.levels.currentLevel();                                
-        obstacle_types = current_level.obstacle_types;                             
+        obstacle_types = current_level.obstacle_types; 
+        item_types = current_level.item_types;
+
         container.addChild(player);
         player.x = 80;
         player.y = 200;
 
-        player.items = {};
+        player.items = {"potato": 0}
+        for (var i = 0; i < item_types.length; i++) {
+            player.items[item_types[i]] = 0;
+        }
         
         callback();
     }
@@ -156,6 +162,10 @@ rince.level = (function(){
             }
         };
     }
+
+    function getPotatoes() {
+        return player.items["potato"];
+    }
     
     return {
         initialize: initialize,
@@ -168,7 +178,8 @@ rince.level = (function(){
         resetPlayerVerticalMove: resetPlayerVerticalMove,
         isStopped: isStopped,
         tick: tick,
-        stop: stop
+        stop: stop,
+        getPotatoes: getPotatoes
     };
     
 })();

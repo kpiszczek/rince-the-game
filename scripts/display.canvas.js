@@ -3,9 +3,11 @@ rince.display = (function(){
     var dom = rince.dom,
         $ = dom.$,
         level = rince.level,
+        levels = rince.levels,
         firstRun = true,
         landscapePos = 0,
         skyPos = 0,
+        player,
         canvas, 
         ctx, 
         landBitmap1, 
@@ -22,6 +24,8 @@ rince.display = (function(){
         game,
         muteButton,
         menuButton,
+        potatoIndicator,
+        potatoIndicatorBitmap,
         audio;
     
     function init(){
@@ -42,7 +46,7 @@ rince.display = (function(){
         stage = new createjs.Stage(canvas);
 
         game = rince.game; 
-        audio = rince.audio;     
+        audio = rince.audio;    
     }
     
     function reset(callback) {
@@ -92,6 +96,22 @@ rince.display = (function(){
         stage.addChild(muteButton);
         stage.addChild(menuButton);
     }
+
+    function addIndicators(){
+        potatoIndicatorBitmap = new createjs.Bitmap(rince.images["images/potato" + cellSize + ".png"]);
+        potatoIndicatorBitmap.alwaysOnTop = true;
+        potatoIndicatorBitmap.x = 450;
+        potatoIndicatorBitmap.y = 10;
+
+        potatoIndicator = new createjs.Text("{0}/{1}".format(0, level.needed_potatoes), "24px Helvetica");
+        potatoIndicator.x = 520;
+        potatoIndicator.y = 10;
+        potatoIndicator.alwaysOnTop = true;
+
+        stage.addChild(potatoIndicatorBitmap);
+        stage.addChild(potatoIndicator);
+    }
+
     
     function setup(){
         init();
@@ -107,6 +127,7 @@ rince.display = (function(){
         createjs.Ticker.setFPS(rince.settings.fps);
 
         addButtons();
+        addIndicators();
     }
 
     function kill(){
@@ -120,6 +141,7 @@ rince.display = (function(){
     function tick(){
         drawLandscape();
         updateButtons();
+        updateIndicators();
         level.tick();      
         stage.update();
     }
@@ -163,6 +185,11 @@ rince.display = (function(){
             muteButton.switchOff();
         }
     }  
+
+    function updateIndicators() {
+        //console.log(level.needed_potatoes);
+        potatoIndicator.text = "{0}/{1}".format((level.getPotatoes()), levels.currentLevel().needed_potatoes);
+    }
     
     function initialize(callback){
         if (firstRun){

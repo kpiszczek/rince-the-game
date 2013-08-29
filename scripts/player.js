@@ -45,7 +45,7 @@ rince.player = (function(){
         
         this.vX = 2;
         this.vY = 2;
-        this.items = [];
+        this.items = {"potato": 0};
         
         this.currentFrame = 0;
         this.bounds = 28;

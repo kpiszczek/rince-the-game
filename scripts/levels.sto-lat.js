@@ -25,6 +25,7 @@ rince.level1 = (function(){
 	function createLevel() {
         var obstacle_types = [],
             monster_types = [],
+            item_types = [],
             image;
 
         var needed_potatoes = 10;
@@ -358,6 +359,7 @@ rince.level1 = (function(){
             landscape: landscape,
             sky: sky,
             obstacle_types: obstacle_types,
+            item_types: item_types,
             spawnObstacles: spawnObsatacles,
             spawnItems: spawnItems,
             spawnMonsters: spawnMonsters,
