@@ -110,9 +110,11 @@ rince.display = (function(){
     }
 
     function kill(){
-        stage.removeAllChildren();
-        createjs.Ticker.removeAllListeners();
-        stage.update();
+        if (stage) {
+            stage.removeAllChildren();
+            createjs.Ticker.removeAllListeners();
+            stage.update();
+        }
     }
     
     function tick(){

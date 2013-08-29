@@ -5,7 +5,12 @@ rince.screens["credits-screen"] = (function() {
         $ = dom.$;
     
     function setup(){
+        var btn = $("#back-button-credits")[0];
         $('#credits')[0].style.display = 'block';
+        dom.bind(btn, "click", function(e){   
+            $("#credits")[0].style.display = "none";  
+            game.showScreen('main-menu');
+        });
     }
     
     function run(){

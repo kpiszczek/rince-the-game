@@ -12,7 +12,7 @@ rince.screens["splash-screen"] = (function() {
             if (p == 100){
                 $(".continue",scr)[0].style.display = "block";
                 dom.bind(scr,"click", function(){
-                    rince.game.showScreen("main-menu");
+                    game.showScreen("main-menu");
                 });
             } else {
                setTimeout(checkProgress, 30); 

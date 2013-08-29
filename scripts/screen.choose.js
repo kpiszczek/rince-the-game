@@ -19,6 +19,12 @@ rince.screens["choose-screen"] = (function() {
             }
             $("#level-select")[0].style.display = "none";
         });
+
+        var btn = $("#back-button-levels")[0];
+        dom.bind(btn, "click", function(e){
+            $("#level-select")[0].style.display = "none";   
+            game.showScreen('main-menu');
+        });
     }
     
     function run(){

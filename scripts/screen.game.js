@@ -65,7 +65,6 @@ rince.screens["game-screen"] = (function(){
             
             audio.toggleMute();
         });
-
     }
     
     function playGameEvents(events){

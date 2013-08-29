@@ -114,6 +114,7 @@ window.addEventListener("load", function(){
                     "loader!images/bumerang" + rince.settings.cellSize + ".png",
                     "loader!images/menu" + rince.settings.cellSize + ".png",
                     "loader!images/mute" + rince.settings.cellSize + ".png",
+                    "loader!images/potato" + rince.settings.cellSize + ".png",
                     "loader!images/checkboxen.jpg",
                     "loader!scripts/utils.js",
                     "loader!scripts/audio.js",         

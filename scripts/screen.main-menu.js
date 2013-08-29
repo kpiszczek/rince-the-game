@@ -9,10 +9,10 @@ rince.screens["main-menu"] = (function(){
         dom.bind("#main-menu ul.menu", "click", function(e){     
             if (e.target.nodeName.toLowerCase() === "button"){
                 var action = e.target.getAttribute("name");
-                if (action == "choose-screen") {
+                if (action === "choose-screen") {
                     $("#level-select")[0].style.display = "block";
                 }
-                if (action == "game-screen") {
+                if (action === "game-screen") {
                     rince.levels.setLevel(1);
                 }
                 game.showScreen(action);
