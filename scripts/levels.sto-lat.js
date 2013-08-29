@@ -9,7 +9,8 @@ rince.level1 = (function(){
 		rows,
         audio,
         fps,
-        level;
+        level,
+        Level;
 
 	function initialize() {
 		cellSize = rince.settings.cellSize;
@@ -22,21 +23,21 @@ rince.level1 = (function(){
         audio = rince.audio;
         fps = rince.settings.fps;
         level = rince.level;
+        Level = rince.level_prototype.Level;
 	}
 
 	function createLevel() {
-        var obstacle_types = [],
-            monster_types = [],
-            item_types = [],
+        var sto_lat = new Level(),
             image;
 
-        var needed_potatoes = 10;
+        sto_lat.name = "Sto Lat";
+        sto_lat.needed_potatoes = 10;
 
-        var landscape = rince.images["images/landscape"+cellSize+".png"];
-        var sky = rince.images["images/clouds"+cellSize+".png"];
+        sto_lat.landscape = rince.images["images/landscape"+cellSize+".png"];
+        sto_lat.sky = rince.images["images/clouds"+cellSize+".png"];
 
         image = rince.images["images/2flowersprite"+cellSize+".png"];
-        var boss = {
+        sto_lat.boss = {
             name: "Twoflower",
             image: image,
             w: image.width/24,
@@ -69,7 +70,7 @@ rince.level1 = (function(){
         }
 
         image = rince.images["images/tree"+cellSize+".png"];
-        obstacle_types.push({
+        sto_lat.obstacle_types.push({
             name: "tree",
             image: image,
             h: image.height,
@@ -83,7 +84,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/cabbage"+cellSize+".png"];
-        obstacle_types.push({
+        sto_lat.obstacle_types.push({
             name: "cabbage",
             image: image,
             h: image.height,
@@ -97,7 +98,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/stone"+cellSize+".png"];
-        obstacle_types.push({
+        sto_lat.obstacle_types.push({
             name: "stone",
             image: image,
             h: image.height,
@@ -111,7 +112,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/bush"+cellSize+".png"];
-        obstacle_types.push({
+        sto_lat.obstacle_types.push({
             name: "bush",
             image: image,
             h: image.height,
@@ -125,7 +126,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/hedgehog"+cellSize+".png"];
-        monster_types.push({
+        sto_lat.monster_types.push({
             name: "hedgehog",
             image: image,
             h: image.height,
@@ -179,7 +180,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/budger"+cellSize+".png"];
-        monster_types.push({
+        sto_lat.monster_types.push({
             name: "budger",
             image: image,
             h: image.height,
@@ -233,7 +234,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/heroin"+cellSize+".png"];
-        monster_types.push({
+        sto_lat.monster_types.push({
             name: "heroin",
             image: image,
             h: image.height,
@@ -271,7 +272,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/errol"+cellSize+".png"];
-        monster_types.push({
+        sto_lat.monster_types.push({
             name: "errol",
             image: image,
             h: image.height,
@@ -311,7 +312,7 @@ rince.level1 = (function(){
         });
 
         image = rince.images["images/potato"+cellSize+".png"];
-        item_types.push({
+        sto_lat.item_types.push({
             name: "potato",
             image: image,
             x: Math.floor(image.width/2),
@@ -322,75 +323,7 @@ rince.level1 = (function(){
             probability: 0.25
         });
 
-        function spawnObstacles(){
-            var obstacles = [],
-                obstacle,
-                o;
-
-            for (var i = 0; i < obstacle_types.length; i++){
-                o = obstacle_types[i];
-                if (o.probability > Math.random()){
-                    obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
-                    obstacles.push(obstacle);
-                    obstacle.y = Math.floor(Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize);
-                }
-            }
-            return obstacles;
-        }
-
-        function spawnItems(){
-            var items = [],
-                item,
-                i;
-
-            for (var j = 0; j < item_types.length; j++){
-                i = item_types[j];
-                if (i.probability > Math.random()){
-                    item = new Item(i.name, i.image, i.x, i.y, i.hitAction);
-                    items.push(item);
-                    item.y = Math.floor(Math.random()*(0.75*rows*cellSize - (i.h - i.y)) + 0.25*rows*cellSize);
-                }
-            }
-            return items;
-        }
-
-        function spawnMonsters(){
-            var monsters = [],
-                monster,
-                m;
-
-            for (var i = 0; i < monster_types.length; i++) {
-                m = monster_types[i];
-                if (m.probability > Math.random()){
-                    monster = new Monster(m.name, m.image, m.w, m.h, m.x, m.y, m.animName, 
-                        m.monsterAnimations, m.hitAction, m.tickAction, m.hitArea);
-                    monsters.push(monster);
-                    monster.y = Math.floor(Math.random()*(0.75*rows*cellSize - (m.h - m.y)) + 0.25*rows*cellSize);
-                }
-            }
-
-            return monsters;
-        }
-
-        function spawnBoss() {
-            var b = new Boss(boss.name, boss.image, boss.w, boss.h, boss.x, boss.y, boss.animName,
-                        boss.bossAnimations, boss.hitAction, boss.tickAction, boss.hitArea);
-            b.y = Math.random()*210 + 100;
-            return b;
-        }
-
-        return {
-            name: "Sto Lat",
-            landscape: landscape,
-            sky: sky,
-            obstacle_types: obstacle_types,
-            item_types: item_types,
-            spawnObstacles: spawnObstacles,
-            spawnItems: spawnItems,
-            spawnMonsters: spawnMonsters,
-            spawnBoss: spawnBoss,
-            needed_potatoes: needed_potatoes
-        }
+        return sto_lat;
     }
 
     return {

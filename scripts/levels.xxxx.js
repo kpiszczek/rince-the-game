@@ -8,7 +8,8 @@ rince.level2 = (function(){
         rows,
         audio,
         fps,
-        level;
+        level,
+        Level;
 
     function initialize() {
         cellSize = rince.settings.cellSize;
@@ -20,21 +21,21 @@ rince.level2 = (function(){
         audio = rince.audio;
         fps = rince.settings.fps;
         level = rince.level;
+        Level = rince.level_prototype.Level;
     }
 
 	function createLevel(){
-        var obstacle_types = [],
-            monster_types = [],
-            item_types = [],
+        var xxxx = new Level(),
             image;
 
-        var needed_potatoes = 15;
+        xxxx.name = "XXXX";
+        xxxx.needed_potatoes = 15;
 
-        var landscape = rince.images["images/landscapeXXXX"+cellSize+".png"];
-        var sky = rince.images["images/clouds"+cellSize+".png"];
+        xxxx.landscape = rince.images["images/landscapeXXXX"+cellSize+".png"];
+        xxxx.sky = rince.images["images/clouds"+cellSize+".png"];
 
         image = rince.images["images/bumerang"+cellSize+".png"];
-        boss = {
+        xxxx.boss = {
             name: "bumerang",
             image: image,
             w: image.width/11,
@@ -67,7 +68,7 @@ rince.level2 = (function(){
         }
 
         image = rince.images["images/cangaroo"+cellSize+".png"];
-        monster_types.push({
+        xxxx.monster_types.push({
             name: "cangaroo",
             image: image,
             h: image.height,
@@ -105,7 +106,7 @@ rince.level2 = (function(){
         });
 
         image = rince.images["images/lizzard"+cellSize+".png"];
-        monster_types.push({
+        xxxx.monster_types.push({
             name: "lizzard",
             image: image,
             h: image.height,
@@ -144,7 +145,7 @@ rince.level2 = (function(){
         });
 
         image = rince.images["images/dropbear"+cellSize+".png"];
-        monster_types.push({
+        xxxx.monster_types.push({
             name: "dropbear",
             image: image,
             h: image.height,
@@ -183,7 +184,7 @@ rince.level2 = (function(){
         });
 
         image = rince.images["images/sheep"+cellSize+".png"];
-        monster_types.push({
+        xxxx.monster_types.push({
             name: "sheep",
             image: image,
             h: image.height,
@@ -236,64 +237,7 @@ rince.level2 = (function(){
             probability: 0.2
         });
 
-        function spawnObstacles(){
-            var obstacles = [],
-                obstacle,
-                o;
-
-            for (var i = 0; i < obstacle_types.length; i++){
-                o = obstacle_types[i];
-                if (o.probability > Math.random()){
-                    obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
-                    obstacles.push(obstacle);
-                    obstacle.y = Math.floor(Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize);
-                }
-            }
-            return obstacles;
-        }
-
-        function spawnItems(){
-            var items = [];
-            return items;
-        }
-
-        function spawnMonsters(){
-            var monsters = [],
-                monster,
-                m;
-
-            for (var i = 0; i < monster_types.length; i++) {
-                m = monster_types[i];
-                if (m.probability > Math.random()){
-                    monster = new Monster(m.name, m.image, m.w, m.h, m.x, m.y, m.animName, 
-                        m.monsterAnimations, m.hitAction, m.tickAction, m.hitArea);
-                    monsters.push(monster);
-                    monster.y = Math.floor(Math.random()*(0.75*rows*cellSize - (m.h - m.y)) + 0.25*rows*cellSize);
-                }
-            }
-            return monsters;
-        }
-
-        function spawnBoss() {
-            var b;
-            b = new Boss(boss.name, boss.image, boss.w, boss.h, boss.x, boss.y, boss.animName,
-                        boss.bossAnimations, boss.hitAction, boss.tickAction, boss.hitArea);
-            b.y = Math.random()*250 + 100;
-            return b;
-        }
-
-        return {
-            name: "XXXX",
-            landscape: landscape,
-            sky: sky,
-            obstacle_types: obstacle_types,
-            item_types: item_types,
-            spawnObstacles: spawnObstacles,
-            spawnItems: spawnItems,
-            spawnMonsters: spawnMonsters,
-            spawnBoss: spawnBoss,
-            needed_potatoes: needed_potatoes
-        }
+        return xxxx;
     }
 
     return {
