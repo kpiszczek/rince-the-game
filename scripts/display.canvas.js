@@ -73,13 +73,21 @@ rince.display = (function(){
     }
 
     function addButtons() {
-        muteButton = new rince.buttons.ToggleButton(rince.images['images/checkboxen.jpg'], 34, 29, 100, 100, function(){
-            audio.toggleMute();
-        });
+        muteButton = new rince.buttons.ToggleButton(
+            rince.images['images/mute' + cellSize + '.png'], 
+            41, 41, 60, 10, 
+            function(){
+                audio.toggleMute();
+            }
+        );
 
-        menuButton = new rince.buttons.Button(rince.images['images/checkboxen.jpg'], 150, 100, function() {
-            game.showScreen('main-menu');
-        });
+        menuButton = new rince.buttons.Button(
+            rince.images['images/menu' + cellSize + '.png'], 
+            10, 10, 
+            function() {
+                game.showScreen('main-menu');
+            }
+        );
 
         stage.addChild(muteButton);
         stage.addChild(menuButton);

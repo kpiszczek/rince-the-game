@@ -36,7 +36,7 @@ rince.level = (function(){
         player.x = 80;
         player.y = 200;
 
-        player.items = [];
+        player.items = {};
         
         callback();
     }
@@ -100,7 +100,7 @@ rince.level = (function(){
             
             child.tick();
             
-            if (child.x < -child.w2){
+            if (child.x < -child.w2 || child.x > cellSize*cols + child.w2 + 10){
                 container.removeChildAt(i);
                 l -= 1;
             }

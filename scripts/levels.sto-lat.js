@@ -27,18 +27,19 @@ rince.level1 = (function(){
             monster_types = [],
             image;
 
+        var needed_potatoes = 10;
+
         var landscape = rince.images["images/landscape"+cellSize+".png"];
         var sky = rince.images["images/clouds"+cellSize+".png"];
 
         image = rince.images["images/2flowersprite"+cellSize+".png"];
-
         var boss = {
             name: "Twoflower",
             image: image,
             w: image.width/24,
             h: image.height,
             x: Math.floor(image.width/48),
-            y: 45,
+            y: image.height/2,
             animName: "photo",
             bossAnimations: {
                 photo: [0, 23, "photo", 2]
@@ -166,8 +167,8 @@ rince.level1 = (function(){
             hitArea: function(tX, tY, tHit) {
                 if (tX - tHit > this.x + this.hit) { return; }
                 if (tX + tHit < this.x - this.hit) { return; }
-                if (tY - tHit > this.y + this.hit + 40) { return; }
-                if (tY + tHit < this.y - this.hit + 40) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
@@ -220,8 +221,8 @@ rince.level1 = (function(){
             hitArea: function(tX, tY, tHit) {
                 if (tX - tHit > this.x + this.hit) { return; }
                 if (tX + tHit < this.x - this.hit) { return; }
-                if (tY - tHit > this.y + this.hit + 20) { return; }
-                if (tY + tHit < this.y - this.hit + 20) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
@@ -263,7 +264,7 @@ rince.level1 = (function(){
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
-            probability: 0.2
+            probability: 0.05
         });
 
         image = rince.images["images/errol"+cellSize+".png"];
@@ -303,7 +304,7 @@ rince.level1 = (function(){
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
-            probability: 0.2
+            probability: 0.05
         });
 
         function spawnObsatacles(){
@@ -341,15 +342,14 @@ rince.level1 = (function(){
                     monster.y = Math.floor(Math.random()*(0.75*rows*cellSize - (m.h - m.y)) + 0.25*rows*cellSize);
                 }
             }
-            //console.log(monsters)
+
             return monsters;
         }
 
         function spawnBoss() {
-            var b;
-            b = new Boss(boss.name, boss.image, boss.w, boss.h, boss.x, boss.y, boss.animName,
+            var b = new Boss(boss.name, boss.image, boss.w, boss.h, boss.x, boss.y, boss.animName,
                         boss.bossAnimations, boss.hitAction, boss.tickAction, boss.hitArea);
-            b.y = 100;
+            b.y = Math.random()*210 + 100;
             return b;
         }
 
@@ -361,7 +361,8 @@ rince.level1 = (function(){
             spawnObstacles: spawnObsatacles,
             spawnItems: spawnItems,
             spawnMonsters: spawnMonsters,
-            spawnBoss: spawnBoss
+            spawnBoss: spawnBoss,
+            needed_potatoes: needed_potatoes
         }
     }
 

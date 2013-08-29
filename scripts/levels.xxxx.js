@@ -27,8 +27,43 @@ rince.level2 = (function(){
             monster_types = [],
             image;
 
+        var needed_potatoes = 15;
+
         var landscape = rince.images["images/landscapeXXXX"+cellSize+".png"];
         var sky = rince.images["images/clouds"+cellSize+".png"];
+
+        image = rince.images["images/bumerang"+cellSize+".png"];
+        boss = {
+            name: "bumerang",
+            image: image,
+            w: image.width/11,
+            h: image.height,
+            x: Math.floor(image.width/48),
+            y: image.height/2,
+            animName: "spin",
+            bossAnimations: {
+                spin: [0, 10, "spin", 1]
+            },
+            hitAction: function(player, level){
+                player.immune = 2*fps;
+                player.idle = fps;
+                level.stop = fps;
+                rince.levels.nextLevel();
+            },
+            tickAction: function() {
+                if (!level.isStopped()){
+                    this.x -= 2*speed;
+                }
+            },
+            hitArea: function(tX, tY, tHit) {
+                if (tX - tHit > this.x + this.hit) { return; }
+                if (tX + tHit < this.x - this.hit) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
+                
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
+            }
+        }
 
         image = rince.images["images/cangaroo"+cellSize+".png"];
         monster_types.push({
@@ -73,16 +108,18 @@ rince.level2 = (function(){
             name: "lizzard",
             image: image,
             h: image.height,
-            w: image.width/100,
-            x: Math.floor(image.width/200),
+            w: image.width/30,
+            x: Math.floor(image.width/60),
             y: -3,
-            animName: 'lick',
+            animName: 'standby',
             monsterAnimations: {
-                lick: [0, 99, 'lick', 1]
+                standby: [0, 0, 'standby', 1],
+                lick: [1, 29, 'standby', 1]
             },
             hitAction: function(player, level) {
                 if (player.immune === 0) {
                     audio.play("body-fall");
+                    this.gotoAndPlay('lick');
                     player.immune = 2*fps;
                     player.idle = fps;
                     player.gotoAndPlay("fall");
@@ -100,11 +137,7 @@ rince.level2 = (function(){
                 if (tY - tHit > this.y + this.hit) { return; }
                 if (tY + tHit < this.y - this.hit) { return; }
 
-                if (this.currentFrame > 69 && this.currentFrame < 81) {
-                    return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
-                } else {
-                    return false;
-                }
+                return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
             probability: 0.2
         });
@@ -194,8 +227,8 @@ rince.level2 = (function(){
             hitArea: function(tX, tY, tHit) {
                 if (tX - tHit > this.x + this.hit) { return; }
                 if (tX + tHit < this.x - this.hit) { return; }
-                if (tY - tHit > this.y + this.hit + 20) { return; }
-                if (tY + tHit < this.y - this.hit + 20) { return; }
+                if (tY - tHit > this.y + this.hit) { return; }
+                if (tY + tHit < this.y - this.hit) { return; }
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             },
@@ -245,7 +278,7 @@ rince.level2 = (function(){
             var b;
             b = new Boss(boss.name, boss.image, boss.w, boss.h, boss.x, boss.y, boss.animName,
                         boss.bossAnimations, boss.hitAction, boss.tickAction, boss.hitArea);
-            b.y = 100;
+            b.y = Math.random()*250 + 100;
             return b;
         }
 
@@ -257,7 +290,8 @@ rince.level2 = (function(){
             spawnObstacles: spawnObsatacles,
             spawnItems: spawnItems,
             spawnMonsters: spawnMonsters,
-            spawnBoss: spawnBoss
+            spawnBoss: spawnBoss,
+            needed_potatoes: needed_potatoes
         }
     }
 
