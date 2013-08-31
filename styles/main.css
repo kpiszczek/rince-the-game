@@ -165,10 +165,10 @@ ul.menu li button:active{
 }
 
 #back-button-credits {
-	position: relative;
+	position: absolute;
 	width: 41px;
 	height: 41px;
-	top: -350px;
+	top: 10px;
 	left: 10px;
 	background-image: url(../images/menu30.png);
 	border-radius: 100%;
@@ -176,10 +176,10 @@ ul.menu li button:active{
 }
 
 #back-button-levels {
-	position: relative;
+	position: absolute;
 	width: 41px;
 	height: 41px;
-	top: -202px;
+	top: 10px;
 	left: 10px;
 	background-image: url(../images/menu30.png);
 	border-radius: 100%;

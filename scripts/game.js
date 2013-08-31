@@ -26,18 +26,19 @@ rince.game = (function(){
             return;
         }
         
-        var canvas = document.createElement("canvas");
-        var ctx = canvas.getContext("2d");
-        var background = $("#game .background")[0];
-        var rect = background.getBoundingClientRect();
-        var image = rince.images["images/background" + rince.settings.cellSize + ".png"];
+        var canvas = document.createElement("canvas"),
+            ctx = canvas.getContext("2d"),
+            background = $("#game .background")[0],
+            rect = background.getBoundingClientRect(),
+            image = rince.images["images/background" + rince.settings.cellSize + ".png"];
+            
         canvas.width = rince.settings.cols * rince.settings.cellSize;
         canvas.height = rince.settings.rows * rince.settings.cellSize;
         ctx.drawImage(image,0,0);
         background.appendChild(canvas);
     }
     
-    function setup(){
+    function setup() {
         dom.bind(document, "touchmove", function(event) {
             event.preventDefault();
         });
@@ -48,13 +49,13 @@ rince.game = (function(){
                 window.scrollTo(0, 1);
             }, 0);
         }
+
         createBackground();
     }
     
     return {
         showScreen: showScreen,
-        setup: setup,
-        
+        setup: setup,       
     };
     
 })();

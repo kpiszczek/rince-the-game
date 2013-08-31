@@ -19,4 +19,4 @@ rince.storage = (function() {
 		set: set,
 		get: get
 	};
-});
+})();

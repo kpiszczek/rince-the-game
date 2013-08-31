@@ -2,7 +2,8 @@ rince.levels = (function(){
     var current_level_idx = 0,
         levels = [],
         score = 0,
-        level;
+        level,
+        db;
 
     function initialize(){
         rince.level1.initialize();
@@ -12,6 +13,7 @@ rince.levels = (function(){
         levels.push(rince.level2.createLevel());
 
         level = rince.level;
+        db = rince.storage;
     }
 
     function currentLevel(){
@@ -19,26 +21,37 @@ rince.levels = (function(){
     }
 
     function nextLevel() {
-        if (current_level_idx < (levels.length - 1)){
-            current_level_idx += 1;
+        if (current_level_idx < (levels.length - 1)) {
+
             score += level.getPotatoes();
-            console.log(score);
+
+            var data = db.get('gameData');
+
+            var current_score = data.levelScores[current_level_idx];
+
+            if (current_score === undefined) {
+                data.levelScores.push(score);
+            } else if (current_score < score) {
+                data.levelScores[current_level_idx] = score;
+            }
+
+            db.set('gameData', data);
+
+            current_level_idx += 1;
+
         } else {
             score += level.getPotatoes();    
             rince.game.showScreen('credits-screen');
         }
 
-        setTimeout(function(){
-            rince.level.initialize(function (){
-                rince.display.reset(function(){});
-            });
-        }, 500);
+        rince.level.initialize(function (){
+            rince.display.reset(function(){});
+        });
     }
 
     function setLevel(id) {
         if (id < (levels.length+1)) {
             current_level_idx = id - 1;
-            console.log(current_level_idx);
         } else {
             // do nothing
         }

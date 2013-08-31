@@ -3,9 +3,21 @@ rince.screens["main-menu"] = (function(){
         game = rince.game,
         display = rince.display,
         $ = dom.$,
-        firstRun = true;
+        firstRun = true,
+        db;
     
-    function setup(){
+    function setup() {
+        db = rince.storage;
+
+        var data = db.get('gameData');
+
+        if (data === null) {
+            db.set('gameData',{
+                levelScores: [],
+                highScores: []
+            });
+        }
+
         print();
     }
 

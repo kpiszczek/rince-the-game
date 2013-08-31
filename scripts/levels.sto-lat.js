@@ -337,7 +337,7 @@ rince.level1 = (function(){
         var sto_lat = new Level();
 
         sto_lat.name = "Sto Lat";
-        sto_lat.needed_potatoes = 10;
+        sto_lat.needed_potatoes = 1;
 
         sto_lat.landscape = rince.images["images/landscape"+cellSize+".png"];
         sto_lat.sky = rince.images["images/clouds"+cellSize+".png"];

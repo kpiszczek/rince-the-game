@@ -47,7 +47,7 @@ rince.screens["game-screen"] = (function(){
         level.resetPlayerVerticalMove();
     }
     
-    function setup(){
+    function setup() {
         input.initialize();
         rince.levels.initialize();
         input.bind("keydown_Up", moveUp);

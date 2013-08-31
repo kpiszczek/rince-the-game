@@ -186,7 +186,6 @@ rince.display = (function(){
     }  
 
     function updateIndicators() {
-        //console.log(level.needed_potatoes);
         potatoIndicator.text = "{0}/{1}".format((level.getPotatoes()), levels.currentLevel().needed_potatoes);
     }
     
