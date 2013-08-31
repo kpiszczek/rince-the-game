@@ -2,6 +2,7 @@ body{
 	margin:0;
 	text-align:center
 }
+
 #container{
 	width:100%;
 	height:100%;
@@ -10,6 +11,7 @@ body{
 	box-pack:center;
 	box-align:center
 }
+
 #game{
 	display:table;
 	margin:0 auto;
@@ -25,6 +27,7 @@ body{
 	center;
 	background-color:#e6e6e6
 }
+
 #game .screen{
 	position:
 	absolute;
@@ -34,9 +37,11 @@ body{
 	z-index:10;
 	margin:0 auto
 }
+
 #game .screen.active{
 	display:block
 }
+
 #game .background{
 	position:absolute;
 	left:0;
@@ -45,10 +50,12 @@ body{
 	height:100%;
 	z-index:0
 }
+
 #game .background canvas{
 	width:100%;
 	height:100%
 }
+
 #game .main-window{
 	position:absolute;
 	left:0;
@@ -57,15 +64,18 @@ body{
 	height:100%;
 	z-index:20
 }
+
 #splash-screen{
 	text-align:center;
 	padding-top:2.5em
 }
+
 #splash-screen .continue{
 	cursor:pointer;
 	font-size:0.75em;
 	display:none
 }
+
 .logo{
 	font-size:1.5em;
 	line-height:0.9em;
@@ -74,18 +84,22 @@ body{
 	text-shadow:0.03em 0.03em 0.06em #ff0,-0.03em -0.03em 0.06em #ff0,0.1em 0.15em 0.15em #000;
 	color:#aa1414;
 }
+
 #main-menu{
 	padding-top:1em;
 }
+
 ul.menu{
 	text-align:center;
 	padding:0;
 	margin:0;
 	list-style:none;
 }
+
 ul.menu li{
 	margin:0.5em 0;
 }
+
 ul.menu li button{
 	background-image: url(../images/menu-button30.png);
 	font-family:Bubblegum;
@@ -100,23 +114,28 @@ ul.menu li button{
 	-moz-box-shadow:0.3em 0.3em 0.3em 0.4em #000;
 	box-shadow:0.3em 0.3em 0.4em #000
 }
-ul.menu li button:hover{
+
+ul.menu li button.available:hover{
 	border:0.15em solid #aa1414;
 	cursor:pointer;
 }
+
 ul.menu li button:active{
 	color:#ff0;
 	background:#1e2800
 }
+
 .cell-size{
 	font-size:30px
 }
+
 #player-proto{
 	position:absolute;
 	width:1em;
 	height:1em;
 	left:-1000px
 }
+
 .progress{
 	margin:0 auto;
 	width:7em;
@@ -125,21 +144,26 @@ ul.menu li button:active{
 	overflow:hidden;
 	border:1px solid #c8c864
 }
+
 .progress .indicator{
 	background-color:#c8c864;
 	height:100%;width:0%
 }
+
 #game-screen .game-landscape{
 	position:relative;
 	width:20em;
 	height:12em
 }
-#level-select {
+
+#choose-screen {
 	padding-top: 1em;
 }
-#credits {
+
+#credits-screen {
 	padding-top: 1em;
 }
+
 #back-button-credits {
 	position: relative;
 	width: 41px;

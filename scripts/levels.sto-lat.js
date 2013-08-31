@@ -308,7 +308,7 @@ rince.level1 = (function(){
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             }
-        }
+        };
     }
 
     function addItems(sto_lat) {
@@ -351,7 +351,7 @@ rince.level1 = (function(){
     }
 
     return {
-    	initialize: initialize,
-    	createLevel: createLevel
-    }
+        initialize: initialize,
+        createLevel: createLevel
+    };
 })();

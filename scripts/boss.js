@@ -42,17 +42,17 @@ rince.boss = (function(){
         this.tick = tickAction;
 
         this.hitArea = hitArea;
-	}
+	};
 	
 	Boss.prototype.hitPoint = function(tX, tY){
-		return this.hitRadius(tX, tY, 0)
-	}
+		return this.hitRadius(tX, tY, 0);
+	};
 	
 	Boss.prototype.hitRadius = function(tX, tY, tHit){
 		return this.hitArea(tX, tY, tHit);
-	}
+	};
 	
 	return {
 		Boss: Boss
-   }
+   };
 })();

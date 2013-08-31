@@ -23,8 +23,8 @@ rince.item = (function(){
             frames: {width: w, height: h, regX: x, regY: y},
             animations: {
                 init: {
-                	frames: [0],
-                	next: 'init'
+					frames: [0],
+					next: 'init'
                 }
             }
         });
@@ -46,17 +46,17 @@ rince.item = (function(){
         this.w2 = w/2;
         
         this.x = cols * cellSize + this.w2;
-	}
+	};
 	
 	Item.prototype.tick = function(){
 		if (!level.isStopped()){
 			this.x -= speed;
 		}
-	}
+	};
 	
 	Item.prototype.hitPoint = function(tX, tY){
-		return this.hitRadius(tX, tY, 0)
-	}
+		return this.hitRadius(tX, tY, 0);
+	};
 	
 	Item.prototype.hitRadius = function(tX, tY, tHit){
 		if (tX - tHit > this.x + this.hit) { return; }
@@ -65,9 +65,9 @@ rince.item = (function(){
         if (tY + tHit < this.y - this.hit) { return; }
         
         return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
-	}
+	};
 	
 	return {
 		Item: Item
-    }
+    };
 })();

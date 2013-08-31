@@ -40,17 +40,17 @@ rince.monster = (function(){
         this.tick = tickAction;
 
         this.hitArea = hitArea;
-	}
+	};
 
 	Monster.prototype.hitPoint = function(tX, tY){
 		return this.hitRadius(tX, tY, 0);
-	}
+	};
 	
 	Monster.prototype.hitRadius = function(tX, tY, tHit){
 		return this.hitArea(tX, tY, tHit);
-	}
+	};
 
 	return {
 		Monster: Monster
-	}
+	};
 })();

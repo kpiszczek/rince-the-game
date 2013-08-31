@@ -2,13 +2,14 @@ rince.screens["credits-screen"] = (function() {
     var game = rince.game,
         dom = rince.dom,
         firstRun = true,
-        $ = dom.$;
+        $ = dom.$,
+        display = rince.display;
     
     function setup(){
         var btn = $("#back-button-credits")[0];
-        $('#credits')[0].style.display = 'block';
+        $('#credits-screen')[0].style.display = 'block';
         dom.bind(btn, "click", function(e){   
-            $("#credits")[0].style.display = "none";  
+            $("#credits-screen")[0].style.display = "none";  
             game.showScreen('main-menu');
         });
     }
@@ -17,6 +18,9 @@ rince.screens["credits-screen"] = (function() {
         if (firstRun){
             setup();
             firstRun = false;
+        } else {
+            display.kill();
+            setup();
         }
     }
     

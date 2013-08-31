@@ -76,7 +76,7 @@ rince.screens["game-screen"] = (function(){
             
             switch(levelEvent.type){
                 case "move":
-                    display.movePlayer(levelEvent.data, next)
+                    display.movePlayer(levelEvent.data, next);
                     break;
                 default:
                     next();

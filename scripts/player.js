@@ -50,33 +50,33 @@ rince.player = (function(){
         this.currentFrame = 0;
         this.bounds = 28;
         this.hit = this.bounds;
-	}
+	};
 	
 	Player.prototype.tick = function (stopped) {
-        if (this.idle == 0) {
+        if (this.idle === 0) {
             if (this.immune > 0) {
                 this.immune -= 1;
             }
             
             if ((this.x + this.direction[0] > quaterFrameSize) && 
-            		(this.x + (this.direction[0] * 2) < this.x_end - quaterFrameSize + 1)){
+                    (this.x + (this.direction[0] * 2) < this.x_end - quaterFrameSize + 1)){
                 this.x += this.vX * this.direction[0];
             }
             
             if ((this.y + this.vY*this.direction[1] + halfFrameHeight < this.y_end) &&
-            		(this.y + this.vY*this.direction[1] > this.quaterYEnd)){
-            	this.y += this.vY * this.direction[1];
+                    (this.y + this.vY*this.direction[1] > this.quaterYEnd)){
+                this.y += this.vY * this.direction[1];
             }
             
             if (this.direction[0] == 1 && this.direction[0] != previousDir){
-            	previousDir = 1;
-            	this.gotoAndPlay("faster");            	
+                previousDir = 1;
+                this.gotoAndPlay("faster");
             } else if (this.direction[0] == -1 && this.direction[0] != previousDir){
-            	previousDir = -1;
-            	this.gotoAndPlay("slower");       	
+                previousDir = -1;
+                this.gotoAndPlay("slower");
             } else if (this.direction[0] != previousDir){
-            	previousDir = 0;
-            	this.gotoAndPlay("run");  	
+                previousDir = 0;
+                this.gotoAndPlay("run");
             }
         } else {
             if (this.idle == 1) {
@@ -84,7 +84,7 @@ rince.player = (function(){
             }
             this.idle -= 1;
         }
-    }
+    };
 	
 	return {
 		Player: Player

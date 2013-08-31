@@ -256,7 +256,7 @@ rince.level2 = (function(){
                 
                 return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
             }
-        }
+        };
     }
 
 	function createLevel(){
@@ -277,7 +277,7 @@ rince.level2 = (function(){
     }
 
     return {
-    	initialize: initialize,
-    	createLevel: createLevel
-    }
+        initialize: initialize,
+        createLevel: createLevel
+    };
 })();

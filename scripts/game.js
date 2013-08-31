@@ -8,7 +8,7 @@ rince.game = (function(){
         var screen = $("#" + screenId)[0];
         var args;
         
-        if (activeScreen){
+        if (activeScreen) {
             dom.removeClass(activeScreen, "active");
         }
         
@@ -16,6 +16,7 @@ rince.game = (function(){
         rince.screens[screenId].run.apply(
             rince.screens[screenId], args
         );
+
         dom.addClass(screen, "active");
     }
     

@@ -27,10 +27,11 @@ var rince = {
 
 window.addEventListener("load", function(){
     
-    var numPreload = 0;
-    var numLoaded = 0;
-    var playerProto = document.getElementById("player-proto")
-    var rect = playerProto.getBoundingClientRect();
+    var numPreload = 0,
+        numLoaded = 0,
+        playerProto = document.getElementById("player-proto"),
+        rect = playerProto.getBoundingClientRect();
+
     rince.settings.cellSize = rect.width;
     
     yepnope.addPrefix("loader", function(resource){
@@ -87,6 +88,10 @@ window.addEventListener("load", function(){
                     rince.game.showScreen("install-screen");
                 }
             }
+        },{
+            test: Modernizr.localstorage,
+            yep: 'scripts/storage.js',
+            nope: 'scripts/storage.cookie.js'
         }
     ]);
     
@@ -115,7 +120,6 @@ window.addEventListener("load", function(){
                     "loader!images/menu" + rince.settings.cellSize + ".png",
                     "loader!images/mute" + rince.settings.cellSize + ".png",
                     "loader!images/potato" + rince.settings.cellSize + ".png",
-                    "loader!images/checkboxen.jpg",
                     "loader!scripts/utils.js",
                     "loader!scripts/audio.js",         
                     "loader!scripts/input.js",

@@ -23,12 +23,12 @@ rince.obstacle = (function(){
             frames: {width: w, height: h, regX: x, regY: y},
             animations: {
                 left: {
-                	frames: [0],
-                	next: 'left'
+					frames: [0],
+					next: 'left'
                 },
                 right: {
-                	frames: [1],
-                	next: 'right'
+					frames: [1],
+					next: 'right'
                 }
             }
         });
@@ -40,7 +40,11 @@ rince.obstacle = (function(){
         frameSize = this.spriteSheet.getFrame(0).rect.width;
         level = rince.level;
         
-        (Math.random() > 0.5) ? this.gotoAndPlay('left') : this.gotoAndPlay('right');
+        if (Math.random() > 0.5) {
+			this.gotoAndPlay('left'); 
+        } else {
+			this.gotoAndPlay('right');
+        }
         
         this.name = obstacleName;
         
@@ -48,17 +52,17 @@ rince.obstacle = (function(){
         this.w2 = w/2;
         
         this.x = cols * cellSize + this.w2;
-	}
+	};
 	
 	Obstacle.prototype.tick = function(){
 		if (!level.isStopped()){
 			this.x -= speed;
 		}
-	}
+	};
 	
 	Obstacle.prototype.hitPoint = function(tX, tY){
-		return this.hitRadius(tX, tY, 0)
-	}
+		return this.hitRadius(tX, tY, 0);
+	};
 	
 	Obstacle.prototype.hitRadius = function(tX, tY, tHit){
 		if (tX - tHit > this.x + this.hit) { return; }
@@ -67,9 +71,9 @@ rince.obstacle = (function(){
         if (tY + tHit < this.y - this.hit) { return; }
         
         return this.hit + tHit > Math.sqrt(Math.pow(Math.abs(this.x - tX), 2) + Math.pow(Math.abs(this.y - tY), 2));
-	}
+	};
 	
 	return {
 		Obstacle: Obstacle
-    }
+    };
 })();

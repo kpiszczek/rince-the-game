@@ -36,7 +36,7 @@ rince.level_prototype = (function() {
         for (var i = 0; i < this.obstacle_types.length; i++){
             o = this.obstacle_types[i];
             if (o.probability > Math.random()){
-                obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction)
+                obstacle = new Obstacle(o.name, o.image, o.w, o.h, o.x, o.y, o.hitAction);
                 obstacles.push(obstacle);
                 obstacle.y = Math.floor(
                     Math.random()*(0.75*rows*cellSize - (o.h - o.y)) + 0.25*rows*cellSize
@@ -44,7 +44,7 @@ rince.level_prototype = (function() {
             }
         }
         return obstacles;
-    }
+    };
 
     Level.prototype.spawnItems = function() {
         var items = [],
@@ -62,7 +62,7 @@ rince.level_prototype = (function() {
             }
         }
         return items;
-    }
+    };
 
     Level.prototype.spawnMonsters = function() {
         var monsters = [],
@@ -82,7 +82,7 @@ rince.level_prototype = (function() {
         }
 
         return monsters;
-    }
+    };
 
     Level.prototype.spawnBoss = function() {
         var boss = this.boss;
@@ -90,9 +90,9 @@ rince.level_prototype = (function() {
                         boss.bossAnimations, boss.hitAction, boss.tickAction, boss.hitArea);
         b.y = Math.random()*210 + 100;
         return b;
-    }
+    };
 
     return {
-    	Level: Level
-    }
+        Level: Level
+    };
 })();

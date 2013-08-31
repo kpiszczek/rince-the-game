@@ -41,7 +41,7 @@ rince.level = (function(){
         player.x = 80;
         player.y = 200;
 
-        player.items = {"potato": 0}
+        player.items = {"potato": 0};
         for (var i = 0; i < item_types.length; i++) {
             player.items[item_types[i].name] = 0;
         }
@@ -174,7 +174,7 @@ rince.level = (function(){
 
     function ifNotStopped(callback) {
         return function(){
-            if (this.stop == 0){
+            if (this.stop === 0){
                 callback();
             } else {
                 //pass
@@ -183,7 +183,7 @@ rince.level = (function(){
     }
 
     function getPotatoes() {
-        return player.items["potato"];
+        return player.items.potato;
     }
     
     return {

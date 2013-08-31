@@ -13,7 +13,6 @@ rince.display = (function(){
         landBitmap1, 
         skyBitmap1, 
         landBitmap2, 
-        landBitmap2,
         cols, 
         rows, 
         cellSize, 
@@ -154,11 +153,11 @@ rince.display = (function(){
         
         var intersection = canvas.width - landscapePos;
         
-        if (intersection != 0) { 
+        if (intersection !== 0) { 
             landBitmap1.sourceRect = new createjs.Rectangle(landscapePos, 0, intersection, canvas.height);
         }
         
-        if (landscapePos != 0){
+        if (landscapePos !== 0){
             landBitmap2.sourceRect = new createjs.Rectangle(0, 0, landscapePos, canvas.height);
         }
         
@@ -167,10 +166,10 @@ rince.display = (function(){
         
         intersection = canvas.width - skyPos;
         
-        if (intersection != 0){
+        if (intersection !== 0){
             skyBitmap1.sourceRect = new createjs.Rectangle(skyPos, 0, intersection, canvas.height);
         }
-        if (skyPos != 0) {
+        if (skyPos !== 0) {
             skyBitmap2.sourceRect = new createjs.Rectangle(0, 0, skyPos, canvas.height);
         }
         
