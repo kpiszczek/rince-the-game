@@ -3,7 +3,8 @@ rince.levels = (function(){
         levels = [],
         score = 0,
         level,
-        db;
+        db,
+        $;
 
     function initialize(){
         rince.level1.initialize();
@@ -14,6 +15,7 @@ rince.levels = (function(){
 
         level = rince.level;
         db = rince.storage;
+        $ = rince.dom.$;
     }
 
     function currentLevel(){
@@ -39,14 +41,14 @@ rince.levels = (function(){
 
             current_level_idx += 1;
 
+            rince.display.kill();
+            rince.game.showScreen('next-level-screen');
+
         } else {
+            rince.display.kill();
             score += level.getPotatoes();    
             rince.game.showScreen('credits-screen');
         }
-
-        rince.level.initialize(function (){
-            rince.display.reset(function(){});
-        });
     }
 
     function setLevel(id) {

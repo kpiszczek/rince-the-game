@@ -263,7 +263,7 @@ rince.level2 = (function(){
         var xxxx = new Level();
 
         xxxx.name = "XXXX";
-        xxxx.needed_potatoes = 15;
+        xxxx.needed_potatoes = 2;
 
         xxxx.landscape = rince.images["images/landscapeXXXX"+cellSize+".png"];
         xxxx.sky = rince.images["images/clouds"+cellSize+".png"];

@@ -1,9 +1,9 @@
-body{
+body {
 	margin:0;
 	text-align:center
 }
 
-#container{
+#container {
 	width:100%;
 	height:100%;
 	display:box;
@@ -12,7 +12,7 @@ body{
 	box-align:center
 }
 
-#game{
+#game {
 	display:table;
 	margin:0 auto;
 	position:absolute;
@@ -28,7 +28,7 @@ body{
 	background-color:#e6e6e6
 }
 
-#game .screen{
+#game .screen {
 	position:
 	absolute;
 	width:100%;
@@ -38,11 +38,11 @@ body{
 	margin:0 auto
 }
 
-#game .screen.active{
+#game .screen.active {
 	display:block
 }
 
-#game .background{
+#game .background {
 	position:absolute;
 	left:0;
 	top:0;
@@ -51,12 +51,12 @@ body{
 	z-index:0
 }
 
-#game .background canvas{
+#game .background canvas {
 	width:100%;
 	height:100%
 }
 
-#game .main-window{
+#game .main-window {
 	position:absolute;
 	left:0;
 	top:0;
@@ -65,18 +65,18 @@ body{
 	z-index:20
 }
 
-#splash-screen{
+#splash-screen {
 	text-align:center;
 	padding-top:2.5em
 }
 
-#splash-screen .continue{
+#splash-screen .continue {
 	cursor:pointer;
 	font-size:0.75em;
 	display:none
 }
 
-.logo{
+.logo {
 	font-size:1.5em;
 	line-height:0.9em;
 	margin:0;
@@ -85,22 +85,22 @@ body{
 	color:#aa1414;
 }
 
-#main-menu{
+#main-menu {
 	padding-top:1em;
 }
 
-ul.menu{
+ul.menu {
 	text-align:center;
 	padding:0;
 	margin:0;
 	list-style:none;
 }
 
-ul.menu li{
+ul.menu li {
 	margin:0.5em 0;
 }
 
-ul.menu li button{
+ul.menu li button {
 	background-image: url(../images/menu-button30.png);
 	font-family:Bubblegum;
 	font-size:0.8em;
@@ -115,28 +115,28 @@ ul.menu li button{
 	box-shadow:0.3em 0.3em 0.4em #000
 }
 
-ul.menu li button.available:hover{
+ul.menu li button.available:hover {
 	border:0.15em solid #aa1414;
 	cursor:pointer;
 }
 
-ul.menu li button:active{
+ul.menu li button:active {
 	color:#ff0;
 	background:#1e2800
 }
 
-.cell-size{
+.cell-size {
 	font-size:30px
 }
 
-#player-proto{
+#player-proto {
 	position:absolute;
 	width:1em;
 	height:1em;
 	left:-1000px
 }
 
-.progress{
+.progress {
 	margin:0 auto;
 	width:7em;
 	height:0.6em;
@@ -145,12 +145,12 @@ ul.menu li button:active{
 	border:1px solid #c8c864
 }
 
-.progress .indicator{
+.progress .indicator {
 	background-color:#c8c864;
 	height:100%;width:0%
 }
 
-#game-screen .game-landscape{
+#game-screen .game-landscape {
 	position:relative;
 	width:20em;
 	height:12em
@@ -188,4 +188,13 @@ ul.menu li button:active{
 
 #back-button-levels:hover, #back-button-credits:hover {
 	cursor: pointer;
+}
+
+.popover {
+	position: absolute;
+	z-index: -2;
+}
+
+#next-level-screen {
+	padding-top: 1em;
 }

@@ -138,6 +138,7 @@ window.addEventListener("load", function(){
                     "loader!scripts/screen.main-menu.js",
                     "loader!scripts/screen.choose.js",
                     "loader!scripts/screen.credits.js",
+                    "loader!scripts/screen.next.js",
                     "loader!scripts/screen.game.js"                                     
                 ]
             }

@@ -1,10 +1,13 @@
 rince.buttons = (function() {
-	function ToggleButton(image, w, h, x, y, clickHandler){
+	function ToggleButton(image, w, h, x, y, clickHandler) {
+		if (!(this instanceof ToggleButton)) {
+			return new ToggleButton();
+		}
 		this.initialize(image, w, h, x, y, clickHandler);
 	}
 	
 	ToggleButton.prototype = new createjs.Bitmap();
-	ToggleButton.prototype.Bitmap_initialize = ToggleButton.prototype.initialize;
+	//ToggleButton.prototype.Bitmap_initialize = ToggleButton.prototype.initialize;
 	
 	ToggleButton.prototype.initialize = function(image, w, h, x, y, clickHandler){
 		this.image = image;
@@ -45,14 +48,17 @@ rince.buttons = (function() {
 		this.sourceRect = new createjs.Rectangle(0, 0, this.w, this.h);
 	};
 
-	function Button(image, x, y, clickHandler){
+	function Button(image, x, y, clickHandler) {
+		if (!(this instanceof Button)) {
+			return new Button();
+		}
 		this.initialize(image, x, y, clickHandler);
 	}
 	
 	Button.prototype = new createjs.Bitmap();
-	Button.prototype.Bitmap_initialize = Button.prototype.initialize;
+	//Button.prototype.Bitmap_initialize = Button.prototype.initialize;
 	
-	Button.prototype.initialize = function(image, x, y, clickHandler){
+	Button.prototype.initialize = function(image, x, y, clickHandler) {
 		this.image = image;
 		this.x = x;
 		this.y = y;

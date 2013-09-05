@@ -9,7 +9,8 @@ rince.display = (function(){
         skyPos = 0,
         player,
         canvas, 
-        ctx, 
+        ctx,
+        //overlayCanvas,
         landBitmap1, 
         skyBitmap1, 
         landBitmap2, 
@@ -17,6 +18,7 @@ rince.display = (function(){
         rows, 
         cellSize, 
         stage, 
+        //overlays,
         previousCycle,
         speed, 
         objects,
@@ -27,22 +29,36 @@ rince.display = (function(){
         potatoIndicatorBitmap,
         audio;
     
-    function init(){
+    function init() {
         var landscapeElement = $("#game-screen .game-landscape")[0];
+
         cols = rince.settings.cols;
         rows = rince.settings.rows;
         cellSize = rince.settings.cellSize;
         speed = rince.settings.speed;
         
         canvas = document.createElement("canvas");
-        dom.addClass(canvas,"main-window");
+        ctx = canvas.getContext('2d');
+
+        dom.addClass(canvas, "main-window");
+        canvas.style.position = 'absolute';
+        canvas.style.zIndex = 2;
         
         canvas.width = cols * cellSize;
         canvas.height = rows * cellSize;
 
-        landscapeElement.appendChild(canvas);           
+        /*overlayCanvas = document.createElement('canvas');
+        overlayCanvas.style.position = 'absolute';
+        overlayCanvas.zIndex = 1;
+
+        overlayCanvas.width = cols * cellSize;
+        overlayCanvas.height = rows * cellSize;*/
+
+        landscapeElement.appendChild(canvas); 
+        //landscapeElement.appendChild(overlayCanvas);        
         
         stage = new createjs.Stage(canvas);
+        //overlays = new createjs.Stage(canvas);
 
         game = rince.game; 
         audio = rince.audio;    
@@ -50,8 +66,10 @@ rince.display = (function(){
     
     function reset(callback) {
         stage.removeAllChildren();
+        //overlays.removeAllChildren();
         createjs.Ticker.removeAllListeners();
         stage.update();
+        //overlays.update();
         setup();
         callback();
     }
@@ -92,6 +110,8 @@ rince.display = (function(){
             }
         );
 
+        //overlays.addChild(muteButton);
+        //overlays.addChild(menuButton);
         stage.addChild(muteButton);
         stage.addChild(menuButton);
     }
@@ -134,6 +154,9 @@ rince.display = (function(){
             stage.removeAllChildren();
             createjs.Ticker.removeAllListeners();
             stage.update();
+
+            /*overlays.removeAllChildren();
+            overlays.update();*/
         }
     }
     
@@ -143,6 +166,7 @@ rince.display = (function(){
         updateIndicators();
         level.tick();      
         stage.update();
+        //overlays.update();
     }
     
     function drawLandscape(){

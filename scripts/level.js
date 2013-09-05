@@ -80,7 +80,7 @@ rince.level = (function(){
         tickCounter += 1;
 
         if ( this.stop === 0 && player.idle === 0) {
-            if (tickCounter % 30 === 0) {
+            if (tickCounter % 37 === 0) {
 
                 new_obstacles = current_level.spawnObstacles();
 
@@ -89,7 +89,7 @@ rince.level = (function(){
                     container.addChild(new_obstacles[i]);   
                 }     
                 
-            } else if (tickCounter % 41 === 0) {
+            } else if (tickCounter % 53 === 0) {
 
                 new_monsters = current_level.spawnMonsters();
 
@@ -98,7 +98,7 @@ rince.level = (function(){
                     container.addChild(new_monsters[i]);
                 }
 
-            } else if (tickCounter % 37 === 0) {
+            } else if (tickCounter % 47 === 0) {
 
                 new_items = current_level.spawnItems();
 
@@ -107,7 +107,7 @@ rince.level = (function(){
                     container.addChild(new_items[i]);
                 }
 
-            } else if (getPotatoes() >= needed_potatoes && tickCounter % 377 === 0 ) {
+            } else if (getPotatoes() >= needed_potatoes && tickCounter % 419 === 0 ) {
 
                 new_boss = current_level.spawnBoss();
 

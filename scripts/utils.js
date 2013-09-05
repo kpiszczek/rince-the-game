@@ -15,3 +15,16 @@ if (!String.prototype.format) {
     });
   };
 }
+
+function executeOnce(fn, delay) {
+  var executed = false;
+  return function (/* args */) {
+    var args = arguments;
+    if (!executed) {
+      setTimeout(function () {
+        fn.apply(null, args); // preserve arguments
+      }, delay);
+      executed = true;
+    }
+  };
+}
